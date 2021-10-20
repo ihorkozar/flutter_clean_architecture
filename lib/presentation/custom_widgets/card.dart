@@ -32,7 +32,7 @@ class PersonCard extends StatelessWidget {
             PersonCacheImage(
               width: 166,
               height: 166,
-              imageUrl: person.img,
+              imageUrl: person.image,
             ),
             const SizedBox(
               width: 16,

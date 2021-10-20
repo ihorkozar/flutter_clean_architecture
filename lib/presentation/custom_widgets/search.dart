@@ -12,9 +12,6 @@ class CustomSearchDelegate extends SearchDelegate {
   final _suggestions = [
     'Rick',
     'Morty',
-    'Summer',
-    'Beth',
-    'Jerry',
   ];
 
   @override
