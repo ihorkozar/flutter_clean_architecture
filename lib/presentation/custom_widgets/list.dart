@@ -43,25 +43,28 @@ class PersonsList extends StatelessWidget {
           style: const TextStyle(color: Colors.white, fontSize: 25),
         );
       }
-      return ListView.separated(
-        controller: scrollController,
-        itemBuilder: (context, index) {
-          if (index < persons.length) {
-            return PersonCard(person: persons[index]);
-          } else {
-            Timer(const Duration(milliseconds: 30), () {
-              scrollController
-                  .jumpTo(scrollController.position.maxScrollExtent);
-            });
-            return _loadingIndicator();
-          }
-        },
-        separatorBuilder: (context, index) {
-          return Divider(
-            color: Colors.grey[400],
-          );
-        },
-        itemCount: persons.length + (isLoading ? 1 : 0),
+      return Padding(
+        padding: const EdgeInsets.only(top: 8),
+        child: ListView.separated(
+          controller: scrollController,
+          itemBuilder: (context, index) {
+            if (index < persons.length) {
+              return PersonCard(person: persons[index]);
+            } else {
+              Timer(const Duration(milliseconds: 30), () {
+                scrollController
+                    .jumpTo(scrollController.position.maxScrollExtent);
+              });
+              return _loadingIndicator();
+            }
+          },
+          separatorBuilder: (context, index) {
+            return Divider(
+              color: Colors.grey[400],
+            );
+          },
+          itemCount: persons.length + (isLoading ? 1 : 0),
+        ),
       );
     });
   }
