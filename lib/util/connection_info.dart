@@ -1,15 +1,14 @@
-import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:universal_internet_checker/universal_internet_checker.dart';
 
 abstract class ConnectionInfo {
   Future<bool> get isConnected;
 }
 
 class ConnectionInfoImp implements ConnectionInfo {
-  final InternetConnectionChecker connectionChecker;
-
-  ConnectionInfoImp(this.connectionChecker);
 
   @override
-  Future<bool> get isConnected => connectionChecker.hasConnection;
-
+  Future<bool> get isConnected async{
+    final checkInternet = await UniversalInternetChecker.checkInternet();
+    return checkInternet == ConnectionStatus.online;
+  }
 }

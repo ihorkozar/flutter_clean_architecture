@@ -28,6 +28,7 @@ class PersonCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               PersonCacheImage(
                 width: 166,
@@ -46,6 +47,8 @@ class PersonCard extends StatelessWidget {
                     ),
                     Text(
                       person.name,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: const TextStyle(
                         fontSize: 20,
                         color: Colors.white,

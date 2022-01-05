@@ -8,9 +8,9 @@ import 'package:flutter_clean_architecture/presentation/bloc/list_cubit/list_cub
 import 'package:flutter_clean_architecture/presentation/bloc/search_bloc/search_bloc.dart';
 import 'package:flutter_clean_architecture/util/connection_info.dart';
 import 'package:get_it/get_it.dart';
-import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+import 'package:universal_internet_checker/universal_internet_checker.dart';
 
 final serviceLocator = GetIt.instance;
 
@@ -48,12 +48,12 @@ Future<void> init() async {
 
   // Util
   serviceLocator.registerLazySingleton<ConnectionInfo>(
-        () => ConnectionInfoImp(serviceLocator()),
+        () => ConnectionInfoImp(),
   );
 
   // External
   final  sharedPreferences = await SharedPreferences.getInstance();
   serviceLocator.registerLazySingleton(() => sharedPreferences);
   serviceLocator.registerLazySingleton(() => http.Client());
-  serviceLocator.registerLazySingleton(() => InternetConnectionChecker());
+  serviceLocator.registerLazySingleton(() => UniversalInternetChecker());
 }
