@@ -1,9 +1,11 @@
 import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/domain/entities/person_entity.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/list_cubit/list_cubit.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/list_cubit/list_state.dart';
+
 import 'card.dart';
 
 class PersonsList extends StatelessWidget {
@@ -45,7 +47,8 @@ class PersonsList extends StatelessWidget {
       }
       return Padding(
         padding: const EdgeInsets.only(top: 8),
-        child: ListView.separated(
+        child:
+        ListView.separated(
           controller: scrollController,
           itemBuilder: (context, index) {
             if (index < persons.length) {

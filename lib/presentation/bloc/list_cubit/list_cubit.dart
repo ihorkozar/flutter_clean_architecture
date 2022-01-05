@@ -2,7 +2,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/domain/entities/person_entity.dart';
 import 'package:flutter_clean_architecture/domain/use_cases/get_all.dart';
 import 'package:flutter_clean_architecture/util/failure.dart';
-
 import 'list_state.dart';
 
 const serverErrorMsg = 'Server Error';
