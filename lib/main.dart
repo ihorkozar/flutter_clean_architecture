@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/list_cubit/list_cubit.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/search_bloc/search_bloc.dart';
-import 'package:flutter_clean_architecture/presentation/screens/overview_screen.dart';
+import 'package:flutter_clean_architecture/routes/router.gr.dart';
 import 'package:flutter_clean_architecture/util/app_style.dart';
 import 'package:flutter_clean_architecture/util/service_locator.dart' as sl;
 import 'package:flutter_clean_architecture/util/service_locator.dart';
@@ -12,6 +12,8 @@ void main() async {
   await sl.init();
   runApp(const MyApp());
 }
+
+final _appRouter = AppRouter();
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -27,12 +29,13 @@ class MyApp extends StatelessWidget {
           create: (context) => serviceLocator<PersonSearchBloc>(),
         ),
       ],
-      child: MaterialApp(
+      child: MaterialApp.router(
+        routerDelegate: _appRouter.delegate(),
+        routeInformationParser: _appRouter.defaultRouteParser(),
         theme: ThemeData.dark().copyWith(
           backgroundColor: AppStyle.mainBackground,
           scaffoldBackgroundColor: AppStyle.mainBackground,
         ),
-        home: const HomePage(),
       ),
     );
   }

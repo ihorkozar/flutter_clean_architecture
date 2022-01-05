@@ -1,7 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/domain/entities/person_entity.dart';
 import 'package:flutter_clean_architecture/presentation/custom_widgets/search_result_card.dart';
-import 'package:flutter_clean_architecture/presentation/screens/detail_screen.dart';
+import 'package:flutter_clean_architecture/routes/router.gr.dart';
 
 class SearchResult extends StatelessWidget {
   final PersonEntity personResult;
@@ -12,12 +13,7 @@ class SearchResult extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => PersonDetailPage(person: personResult),
-          ),
-        );
+        AutoRouter.of(context).push(PersonDetailRoute(person: personResult));
       },
       child: SearchResultCard(personResult: personResult),
     );

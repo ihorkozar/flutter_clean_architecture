@@ -1,6 +1,7 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/domain/entities/person_entity.dart';
-import 'package:flutter_clean_architecture/presentation/screens/detail_screen.dart';
+import 'package:flutter_clean_architecture/routes/router.gr.dart';
 import 'package:flutter_clean_architecture/util/app_style.dart';
 import 'cache_image.dart';
 
@@ -12,14 +13,7 @@ class PersonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => PersonDetailPage(person: person),
-          ),
-        );
-      },
+      onTap: () => context.router.push(PersonDetailRoute(person: person)),
       child: Padding(
         padding: const EdgeInsets.only(right: 8, left: 8),
         child: Container(
