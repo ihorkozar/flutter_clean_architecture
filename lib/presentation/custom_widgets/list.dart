@@ -75,19 +75,15 @@ class PersonsList extends StatelessWidget {
       padding: const EdgeInsets.only(top: 8),
       child: GridView.builder(
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          mainAxisExtent: 200,
+          mainAxisExtent: 204,
           crossAxisCount: gridCount,
         ),
         controller: scrollController,
         itemBuilder: (context, index) {
           if (index < persons.length) {
-            return SizedBox(
-              height: 100,
-              width: 100,
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: PersonCard(person: persons[index]),
-              ),
+            return Padding(
+              padding: const EdgeInsets.all(16),
+              child: PersonCard(person: persons[index]),
             );
           } else {
             Timer(const Duration(milliseconds: 30), () {

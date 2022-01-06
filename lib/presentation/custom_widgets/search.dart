@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/domain/entities/person_entity.dart';
@@ -38,7 +40,8 @@ class CustomSearchDelegate extends SearchDelegate {
   Widget buildResults(BuildContext context) {
     print('Inside custom search delegate and search query is $query');
 
-    BlocProvider.of<PersonSearchBloc>(context, listen: false).add(SearchPersons(query));
+    BlocProvider.of<PersonSearchBloc>(context, listen: false)
+        .add(SearchPersons(query));
 
     return BlocBuilder<PersonSearchBloc, PersonSearchState>(
       builder: (context, state) {
@@ -49,17 +52,40 @@ class CustomSearchDelegate extends SearchDelegate {
         } else if (state is PersonSearchLoaded) {
           final person = state.persons;
           if (person.isEmpty) {
-            return _showErrorText('No Characters with that name found');
+            return _showError('No Characters with that name found');
           }
-          return ListView.builder(
-            itemCount: person.isNotEmpty ? person.length : 0,
-            itemBuilder: (context, int index) {
-              PersonEntity result = person[index];
-              return SearchResult(personResult: result);
-            },
-          );
+
+          if (kIsWeb || Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+            int gridCount = 1;
+            if (MediaQuery.of(context).size.width > 1480) {
+              gridCount = 3;
+            } else if (MediaQuery.of(context).size.width > 980) {
+              gridCount = 2;
+            }
+            return GridView.builder(
+              itemCount: person.isNotEmpty ? person.length : 0,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                mainAxisExtent: 450,
+                mainAxisSpacing: 10.0,
+                crossAxisSpacing: 20.0,
+                crossAxisCount: gridCount,
+              ),
+              itemBuilder: (context, int index) {
+                PersonEntity result = person[index];
+                return SearchResult(personResult: result);
+              },
+            );
+          } else {
+            return ListView.builder(
+              itemCount: person.isNotEmpty ? person.length : 0,
+              itemBuilder: (context, int index) {
+                PersonEntity result = person[index];
+                return SearchResult(personResult: result);
+              },
+            );
+          }
         } else if (state is PersonSearchError) {
-          return _showErrorText(state.message);
+          return _showError(state.message);
         } else {
           return const Center(
             child: Icon(Icons.now_wallpaper),
@@ -69,16 +95,29 @@ class CustomSearchDelegate extends SearchDelegate {
     );
   }
 
-  Widget _showErrorText(String errorMessage) {
+  Widget _showError(String errorMessage) {
     return Container(
       color: Colors.black,
       child: Center(
-        child: Text(
-          errorMessage,
-          style: const TextStyle(
-            fontSize: 20.0,
-            fontWeight: FontWeight.bold,
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              width: 250,
+              height: 250,
+              child: Center(
+                child: Image.asset('assets/images/rm_error.png'),
+              ),
+            ),
+            SizedBox(height: 32,),
+            Text(
+              errorMessage,
+              style: const TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
         ),
       ),
     );

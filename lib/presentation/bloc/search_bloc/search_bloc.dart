@@ -2,10 +2,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/domain/use_cases/search.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/search_bloc/search_event.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/search_bloc/search_state.dart';
+import 'package:flutter_clean_architecture/util/constants.dart';
 import 'package:flutter_clean_architecture/util/failure.dart';
-
-const serverErrorMsg = 'Server Error';
-const cachedErrorMsg = 'Cache Error';
 
 class PersonSearchBloc extends Bloc<PersonSearchEvent, PersonSearchState> {
   final SearchPerson searchPerson;
@@ -33,9 +31,9 @@ class PersonSearchBloc extends Bloc<PersonSearchEvent, PersonSearchState> {
   String _mapFailureToMessage(Failure failure) {
     switch (failure.runtimeType) {
       case ServerFailure:
-        return serverErrorMsg;
+        return Constants.serverErrorMsg;
       case CacheFailure:
-        return cachedErrorMsg;
+        return Constants.cachedErrorMsg;
       default:
         return 'Unexpected Error';
     }

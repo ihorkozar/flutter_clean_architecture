@@ -1,11 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/domain/entities/person_entity.dart';
 import 'package:flutter_clean_architecture/domain/use_cases/get_all.dart';
+import 'package:flutter_clean_architecture/util/constants.dart';
 import 'package:flutter_clean_architecture/util/failure.dart';
 import 'list_state.dart';
-
-const serverErrorMsg = 'Server Error';
-const cachedErrorMsg = 'Cache Error';
 
 class PersonListCubit extends Cubit<PersonState> {
   final GetAllPersons getAllPersons;
@@ -40,9 +38,9 @@ class PersonListCubit extends Cubit<PersonState> {
   String _mapFailureToMessage(Failure failure) {
     switch (failure.runtimeType) {
       case ServerFailure:
-        return serverErrorMsg;
+        return Constants.serverErrorMsg;
       case CacheFailure:
-        return cachedErrorMsg;
+        return Constants.cachedErrorMsg;
       default:
         return 'Unexpected Error';
     }
