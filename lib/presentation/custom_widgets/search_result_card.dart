@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_architecture/domain/entities/person_entity.dart';
+import 'package:flutter_clean_architecture/data/models/person/person_model.dart';
 import 'cache_image.dart';
 
 class SearchResultCard extends StatelessWidget {
@@ -8,7 +8,7 @@ class SearchResultCard extends StatelessWidget {
     required this.personResult,
   }) : super(key: key);
 
-  final PersonEntity personResult;
+  final PersonModel personResult;
 
   @override
   Widget build(BuildContext context) {

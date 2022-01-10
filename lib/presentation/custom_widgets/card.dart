@@ -1,12 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_architecture/domain/entities/person_entity.dart';
+import 'package:flutter_clean_architecture/data/models/person/person_model.dart';
 import 'package:flutter_clean_architecture/routes/router.gr.dart';
 import 'package:flutter_clean_architecture/util/app_style.dart';
 import 'cache_image.dart';
 
 class PersonCard extends StatelessWidget {
-  final PersonEntity person;
+  final PersonModel person;
 
   const PersonCard({Key? key, required this.person}) : super(key: key);
 

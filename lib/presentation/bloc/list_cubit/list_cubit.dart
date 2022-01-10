@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clean_architecture/domain/entities/person_entity.dart';
+import 'package:flutter_clean_architecture/data/models/person/person_model.dart';
 import 'package:flutter_clean_architecture/domain/use_cases/get_all.dart';
 import 'package:flutter_clean_architecture/util/constants.dart';
 import 'package:flutter_clean_architecture/util/failure.dart';
@@ -17,7 +17,7 @@ class PersonListCubit extends Cubit<PersonState> {
 
     final currentState = state;
 
-    var oldPerson = <PersonEntity>[];
+    var oldPerson = <PersonModel>[];
     if (currentState is PersonLoaded) {
       oldPerson = currentState.personsList;
     }

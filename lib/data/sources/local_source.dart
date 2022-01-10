@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:flutter_clean_architecture/data/models/person_model.dart';
+import 'package:flutter_clean_architecture/data/models/person/person_model.dart';
 import 'package:flutter_clean_architecture/util/exeptions.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

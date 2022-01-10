@@ -13,7 +13,7 @@
 import 'package:auto_route/auto_route.dart' as _i6;
 import 'package:flutter/material.dart' as _i7;
 
-import '../domain/entities/person_entity.dart' as _i8;
+import '../data/models/person/person_model.dart' as _i8;
 import '../presentation/custom_widgets/search_result.dart' as _i4;
 import '../presentation/screens/detail_screen.dart' as _i3;
 import '../presentation/screens/overview_screen.dart' as _i2;
@@ -84,7 +84,7 @@ class HomeRoute extends _i6.PageRouteInfo<void> {
 /// generated route for
 /// [_i3.PersonDetailPage]
 class PersonDetailRoute extends _i6.PageRouteInfo<PersonDetailRouteArgs> {
-  PersonDetailRoute({_i7.Key? key, required _i8.PersonEntity person})
+  PersonDetailRoute({_i7.Key? key, required _i8.PersonModel person})
       : super(PersonDetailRoute.name,
             path: 'detail',
             args: PersonDetailRouteArgs(key: key, person: person));
@@ -97,7 +97,7 @@ class PersonDetailRouteArgs {
 
   final _i7.Key? key;
 
-  final _i8.PersonEntity person;
+  final _i8.PersonModel person;
 
   @override
   String toString() {
@@ -108,7 +108,7 @@ class PersonDetailRouteArgs {
 /// generated route for
 /// [_i4.SearchResult]
 class SearchResult extends _i6.PageRouteInfo<SearchResultArgs> {
-  SearchResult({_i7.Key? key, required _i8.PersonEntity personResult})
+  SearchResult({_i7.Key? key, required _i8.PersonModel personResult})
       : super(SearchResult.name,
             path: 'search',
             args: SearchResultArgs(key: key, personResult: personResult));
@@ -121,7 +121,7 @@ class SearchResultArgs {
 
   final _i7.Key? key;
 
-  final _i8.PersonEntity personResult;
+  final _i8.PersonModel personResult;
 
   @override
   String toString() {

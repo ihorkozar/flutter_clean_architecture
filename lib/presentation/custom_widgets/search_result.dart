@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_architecture/domain/entities/person_entity.dart';
+import 'package:flutter_clean_architecture/data/models/person/person_model.dart';
 import 'package:flutter_clean_architecture/presentation/custom_widgets/search_result_card.dart';
 import 'package:flutter_clean_architecture/routes/router.gr.dart';
 
 class SearchResult extends StatelessWidget {
-  final PersonEntity personResult;
+  final PersonModel personResult;
 
   const SearchResult({Key? key, required this.personResult}) : super(key: key);
 

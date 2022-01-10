@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clean_architecture/domain/entities/person_entity.dart';
+import 'package:flutter_clean_architecture/data/models/person/person_model.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/search_bloc/search_bloc.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/search_bloc/search_event.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/search_bloc/search_state.dart';
@@ -71,7 +71,7 @@ class CustomSearchDelegate extends SearchDelegate {
                 crossAxisCount: gridCount,
               ),
               itemBuilder: (context, int index) {
-                PersonEntity result = person[index];
+                PersonModel result = person[index];
                 return SearchResult(personResult: result);
               },
             );
@@ -79,7 +79,7 @@ class CustomSearchDelegate extends SearchDelegate {
             return ListView.builder(
               itemCount: person.isNotEmpty ? person.length : 0,
               itemBuilder: (context, int index) {
-                PersonEntity result = person[index];
+                PersonModel result = person[index];
                 return SearchResult(personResult: result);
               },
             );
@@ -109,7 +109,7 @@ class CustomSearchDelegate extends SearchDelegate {
                 child: Image.asset('assets/images/rm_error.png'),
               ),
             ),
-            SizedBox(height: 32,),
+            const SizedBox(height: 32,),
             Text(
               errorMessage,
               style: const TextStyle(

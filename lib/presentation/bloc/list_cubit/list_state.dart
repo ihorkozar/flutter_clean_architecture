@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_clean_architecture/domain/entities/person_entity.dart';
+import 'package:flutter_clean_architecture/data/models/person/person_model.dart';
 
 abstract class PersonState extends Equatable {
   const PersonState();
@@ -14,7 +14,7 @@ class PersonEmpty extends PersonState {
 }
 
 class PersonLoading extends PersonState {
-  final List<PersonEntity> oldPersonsList;
+  final List<PersonModel> oldPersonsList;
   final bool isFirstFetch;
 
   const PersonLoading(this.oldPersonsList, {this.isFirstFetch = false});
@@ -25,7 +25,7 @@ class PersonLoading extends PersonState {
 }
 
 class PersonLoaded extends PersonState {
-  final List<PersonEntity> personsList;
+  final List<PersonModel> personsList;
 
   const PersonLoaded(this.personsList);
 

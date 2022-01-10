@@ -1,8 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_clean_architecture/data/models/person_model.dart';
+import 'package:flutter_clean_architecture/data/models/person/person_model.dart';
 import 'package:flutter_clean_architecture/data/sources/local_source.dart';
 import 'package:flutter_clean_architecture/data/sources/remote_source.dart';
-import 'package:flutter_clean_architecture/domain/entities/person_entity.dart';
 import 'package:flutter_clean_architecture/domain/repository/person_repository.dart';
 import 'package:flutter_clean_architecture/util/connection_info.dart';
 import 'package:flutter_clean_architecture/util/exeptions.dart';
@@ -20,14 +19,14 @@ class PersonRepositoryImpl implements PersonRepository {
   });
 
   @override
-  Future<Either<Failure, List<PersonEntity>>> getAllPersons(int page) async {
+  Future<Either<Failure, List<PersonModel>>> getAllPersons(int page) async {
     return await _getPersons(() {
       return remoteDataSource.getAllPersons(page);
     });
   }
 
   @override
-  Future<Either<Failure, List<PersonEntity>>> searchPerson(String query) async {
+  Future<Either<Failure, List<PersonModel>>> searchPerson(String query) async {
     return await _getPersons(() {
       return remoteDataSource.searchPerson(query);
     });

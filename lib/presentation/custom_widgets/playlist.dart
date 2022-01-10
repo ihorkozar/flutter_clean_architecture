@@ -3,22 +3,22 @@ import 'dart:io';
 import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clean_architecture/domain/entities/person_entity.dart';
+import 'package:flutter_clean_architecture/data/models/person/person_model.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/list_cubit/list_cubit.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/list_cubit/list_state.dart';
 import 'card.dart';
 
-class PersonsList extends StatelessWidget {
+class PlayList extends StatelessWidget {
   final scrollController = ScrollController();
   final int page = -1;
 
-  PersonsList({Key? key}) : super(key: key);
+  PlayList({Key? key}) : super(key: key);
 
   void setupScrollController(BuildContext context) {
     scrollController.addListener(() {
       if (scrollController.position.atEdge) {
         if (scrollController.position.pixels != 0) {
-          context.read<PersonListCubit>().loadPerson();
+          //context.read<PlayListCubit>().loadPlaylist();
         }
       }
     });
@@ -29,7 +29,7 @@ class PersonsList extends StatelessWidget {
     setupScrollController(context);
 
     return BlocBuilder<PersonListCubit, PersonState>(builder: (context, state) {
-      List<PersonEntity> persons = [];
+      List<PersonModel> persons = [];
       bool isLoading = false;
 
       if (state is PersonLoading && state.isFirstFetch) {
@@ -61,10 +61,10 @@ class PersonsList extends StatelessWidget {
   }
 
   Padding buildGridView(
-    List<PersonEntity> persons,
-    bool isLoading,
-    double screenWidth,
-  ) {
+      List<PersonModel> persons,
+      bool isLoading,
+      double screenWidth,
+      ) {
     int gridCount = 1;
     if(screenWidth > 1480){
       gridCount = 3;
@@ -98,7 +98,7 @@ class PersonsList extends StatelessWidget {
     );
   }
 
-  Padding buildListView(List<PersonEntity> persons, bool isLoading) {
+  Padding buildListView(List<PersonModel> persons, bool isLoading) {
     return Padding(
       padding: const EdgeInsets.only(top: 8),
       child: ListView.separated(

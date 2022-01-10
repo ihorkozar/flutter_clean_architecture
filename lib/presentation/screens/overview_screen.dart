@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/presentation/custom_widgets/custom_drawer.dart';
-import 'package:flutter_clean_architecture/presentation/custom_widgets/list.dart';
+import 'package:flutter_clean_architecture/presentation/custom_widgets/persons_list.dart';
 import 'package:flutter_clean_architecture/presentation/custom_widgets/search.dart';
 
 class HomePage extends StatelessWidget {

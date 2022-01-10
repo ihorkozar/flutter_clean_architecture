@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_architecture/domain/entities/person_entity.dart';
+import 'package:flutter_clean_architecture/data/models/person/person_model.dart';
 import 'package:flutter_clean_architecture/presentation/custom_widgets/cache_image.dart';
 import 'package:flutter_clean_architecture/util/app_style.dart';
 
 class PersonDetailPage extends StatelessWidget {
-  final PersonEntity person;
+  final PersonModel person;
 
   const PersonDetailPage({Key? key, required this.person}) : super(key: key);
 

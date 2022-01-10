@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_clean_architecture/domain/entities/person_entity.dart';
+import 'package:flutter_clean_architecture/data/models/person/person_model.dart';
 
 abstract class PersonSearchState extends Equatable {
   const PersonSearchState();
@@ -13,7 +13,7 @@ class PersonSearchEmpty extends PersonSearchState {}
 class PersonSearchLoading extends PersonSearchState {}
 
 class PersonSearchLoaded extends PersonSearchState {
-  final List<PersonEntity> persons;
+  final List<PersonModel> persons;
 
   const PersonSearchLoaded({required this.persons});
 
