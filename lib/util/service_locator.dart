@@ -1,15 +1,19 @@
 import 'package:flutter_clean_architecture/data/repository/person_repository_impl.dart';
+import 'package:flutter_clean_architecture/data/repository/playlist_repository_impl.dart';
 import 'package:flutter_clean_architecture/data/sources/local_source.dart';
 import 'package:flutter_clean_architecture/data/sources/remote_source.dart';
 import 'package:flutter_clean_architecture/domain/repository/person_repository.dart';
+import 'package:flutter_clean_architecture/domain/repository/playlist_repository.dart';
 import 'package:flutter_clean_architecture/domain/use_cases/get_all.dart';
+import 'package:flutter_clean_architecture/domain/use_cases/get_playlist.dart';
 import 'package:flutter_clean_architecture/domain/use_cases/search.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/list_cubit/list_cubit.dart';
+import 'package:flutter_clean_architecture/presentation/bloc/playlist_cubit/playlist_cubit.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/search_bloc/search_bloc.dart';
 import 'package:flutter_clean_architecture/util/connection_info.dart';
 import 'package:get_it/get_it.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_internet_checker/universal_internet_checker.dart';
 
 final serviceLocator = GetIt.instance;
@@ -17,42 +21,52 @@ final serviceLocator = GetIt.instance;
 Future<void> init() async {
   // BLoC
   serviceLocator.registerFactory(
-        () => PersonListCubit(getAllPersons: serviceLocator()),
+    () => PersonListCubit(getAllPersons: serviceLocator()),
   );
   serviceLocator.registerFactory(
-        () => PersonSearchBloc(searchPerson: serviceLocator()),
+    () => PersonSearchBloc(searchPerson: serviceLocator()),
   );
+  serviceLocator
+      .registerFactory(() => PlaylistCubit(getPlaylist: serviceLocator()));
 
   // UseCases
   serviceLocator.registerLazySingleton(() => GetAllPersons(serviceLocator()));
   serviceLocator.registerLazySingleton(() => SearchPerson(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetPlaylist(serviceLocator()));
 
   // Repository
   serviceLocator.registerLazySingleton<PersonRepository>(
-        () => PersonRepositoryImpl(
+    () => PersonRepositoryImpl(
       remoteDataSource: serviceLocator(),
       localDataSource: serviceLocator(),
       connectionInfo: serviceLocator(),
     ),
   );
 
-  serviceLocator.registerLazySingleton<PersonRemoteDataSource>(
-        () => PersonRemoteDataSourceImpl(
+  serviceLocator.registerLazySingleton<PlaylistRepository>(
+        () => PlaylistRepositoryImpl(
+      remoteDataSource: serviceLocator(),
+      connectionInfo: serviceLocator(),
+    ),
+  );
+
+  serviceLocator.registerLazySingleton<RemoteDataSource>(
+    () => RemoteDataSourceImpl(
       client: serviceLocator(),
     ),
   );
 
-  serviceLocator.registerLazySingleton<PersonLocalDataSource>(
-        () => PersonLocalDataSourceImpl(sharedPref: serviceLocator()),
+  serviceLocator.registerLazySingleton<LocalDataSource>(
+    () => LocalDataSourceImpl(sharedPref: serviceLocator()),
   );
 
   // Util
   serviceLocator.registerLazySingleton<ConnectionInfo>(
-        () => ConnectionInfoImp(),
+    () => ConnectionInfoImp(),
   );
 
   // External
-  final  sharedPreferences = await SharedPreferences.getInstance();
+  final sharedPreferences = await SharedPreferences.getInstance();
   serviceLocator.registerLazySingleton(() => sharedPreferences);
   serviceLocator.registerLazySingleton(() => http.Client());
   serviceLocator.registerLazySingleton(() => UniversalInternetChecker());

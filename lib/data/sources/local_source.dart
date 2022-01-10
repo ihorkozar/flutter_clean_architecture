@@ -5,15 +5,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 const cacheKey = 'cache_key';
 
-abstract class PersonLocalDataSource {
+abstract class LocalDataSource {
   Future<List<PersonModel>> getPersonsFromCache();
   Future<void> personsToCache(List<PersonModel> persons);
 }
 
-class PersonLocalDataSourceImpl extends PersonLocalDataSource {
+class LocalDataSourceImpl extends LocalDataSource {
   final SharedPreferences sharedPref;
 
-  PersonLocalDataSourceImpl({required this.sharedPref});
+  LocalDataSourceImpl({required this.sharedPref});
 
   @override
   Future<List<PersonModel>> getPersonsFromCache() {

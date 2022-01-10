@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/presentation/custom_widgets/custom_drawer.dart';
+import 'package:flutter_clean_architecture/presentation/custom_widgets/playlist.dart';
 
 class SongsPage extends StatelessWidget {
   const SongsPage({Key? key}) : super(key: key);
@@ -12,16 +13,7 @@ class SongsPage extends StatelessWidget {
         centerTitle: true,
       ),
       drawer: const CustomDrawer(),
-      body: ListView(
-        children: [
-          Text('text'),
-          Text('text'),
-          Text('text'),
-          Text('text'),
-          Text('text'),
-          Text('text'),
-        ],
-      ),
+      body: PlayList(),
     );
   }
 }

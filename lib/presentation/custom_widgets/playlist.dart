@@ -1,12 +1,9 @@
 import 'dart:async';
-import 'dart:io';
-import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clean_architecture/data/models/person/person_model.dart';
-import 'package:flutter_clean_architecture/presentation/bloc/list_cubit/list_cubit.dart';
-import 'package:flutter_clean_architecture/presentation/bloc/list_cubit/list_state.dart';
-import 'card.dart';
+import 'package:flutter_clean_architecture/data/models/video/playlist_model.dart';
+import 'package:flutter_clean_architecture/presentation/bloc/playlist_cubit/playlist_cubit.dart';
+import 'cache_image.dart';
 
 class PlayList extends StatelessWidget {
   final scrollController = ScrollController();
@@ -18,7 +15,7 @@ class PlayList extends StatelessWidget {
     scrollController.addListener(() {
       if (scrollController.position.atEdge) {
         if (scrollController.position.pixels != 0) {
-          //context.read<PlayListCubit>().loadPlaylist();
+          context.read<PlaylistCubit>().loadPlaylist();
         }
       }
     });
@@ -28,84 +25,29 @@ class PlayList extends StatelessWidget {
   Widget build(BuildContext context) {
     setupScrollController(context);
 
-    return BlocBuilder<PersonListCubit, PersonState>(builder: (context, state) {
-      List<PersonModel> persons = [];
+    return BlocBuilder<PlaylistCubit, PlaylistState>(builder: (context, state) {
+      List<PlaylistModel> playlists = [];
       bool isLoading = false;
 
-      if (state is PersonLoading && state.isFirstFetch) {
+      if (state is PlaylistLoading && state.isFirstFetch) {
         return _loadingIndicator();
-      } else if (state is PersonLoading) {
-        persons = state.oldPersonsList;
+      } else if (state is PlaylistLoading) {
+        playlists = state.oldPlayList;
         isLoading = true;
-      } else if (state is PersonLoaded) {
-        persons = state.personsList;
-      } else if (state is PersonError) {
-        return Text(
-          state.message,
-          style: const TextStyle(color: Colors.white, fontSize: 25),
+      } else if (state is PlaylistLoaded) {
+        playlists = state.playList;
+      } else if (state is PlaylistError) {
+        return Center(
+          child: Text(
+            state.message,
+            style: const TextStyle(color: Colors.white, fontSize: 25),
+          ),
         );
       }
-      if (kIsWeb || Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-        return buildGridView(
-          persons,
-          isLoading,
-          MediaQuery.of(context).size.width,
-        );
-      } else {
-        return buildListView(
-          persons,
-          isLoading,
-        );
-      }
-    });
-  }
-
-  Padding buildGridView(
-      List<PersonModel> persons,
-      bool isLoading,
-      double screenWidth,
-      ) {
-    int gridCount = 1;
-    if(screenWidth > 1480){
-      gridCount = 3;
-    } else if(screenWidth > 980){
-      gridCount = 2;
-    }
-    return Padding(
-      padding: const EdgeInsets.only(top: 8),
-      child: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          mainAxisExtent: 204,
-          crossAxisCount: gridCount,
-        ),
-        controller: scrollController,
+      return ListView.separated(controller: scrollController,
         itemBuilder: (context, index) {
-          if (index < persons.length) {
-            return Padding(
-              padding: const EdgeInsets.all(16),
-              child: PersonCard(person: persons[index]),
-            );
-          } else {
-            Timer(const Duration(milliseconds: 30), () {
-              scrollController
-                  .jumpTo(scrollController.position.maxScrollExtent);
-            });
-            return _loadingIndicator();
-          }
-        },
-        itemCount: persons.length + (isLoading ? 1 : 0),
-      ),
-    );
-  }
-
-  Padding buildListView(List<PersonModel> persons, bool isLoading) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 8),
-      child: ListView.separated(
-        controller: scrollController,
-        itemBuilder: (context, index) {
-          if (index < persons.length) {
-            return PersonCard(person: persons[index]);
+          if (index < playlists.length) {
+            return PersonCacheImage(imageUrl: playlists[index].image ?? '',);
           } else {
             Timer(const Duration(milliseconds: 30), () {
               scrollController
@@ -119,9 +61,8 @@ class PlayList extends StatelessWidget {
             color: Colors.grey[400],
           );
         },
-        itemCount: persons.length + (isLoading ? 1 : 0),
-      ),
-    );
+        itemCount: playlists.length + (isLoading ? 1 : 0),);
+    });
   }
 
   Widget _loadingIndicator() {

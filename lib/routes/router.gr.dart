@@ -17,7 +17,7 @@ import '../data/models/person/person_model.dart' as _i8;
 import '../presentation/custom_widgets/search_result.dart' as _i4;
 import '../presentation/screens/detail_screen.dart' as _i3;
 import '../presentation/screens/overview_screen.dart' as _i2;
-import '../presentation/screens/songs_screen.dart' as _i5;
+import '../presentation/screens/playlists_screen.dart' as _i5;
 import '../presentation/screens/splash_screen.dart' as _i1;
 
 class AppRouter extends _i6.RootStackRouter {

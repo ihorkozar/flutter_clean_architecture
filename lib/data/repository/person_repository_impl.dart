@@ -8,8 +8,8 @@ import 'package:flutter_clean_architecture/util/exeptions.dart';
 import 'package:flutter_clean_architecture/util/failure.dart';
 
 class PersonRepositoryImpl implements PersonRepository {
-  final PersonRemoteDataSource remoteDataSource;
-  final PersonLocalDataSource localDataSource;
+  final RemoteDataSource remoteDataSource;
+  final LocalDataSource localDataSource;
   final ConnectionInfo connectionInfo;
 
   PersonRepositoryImpl({

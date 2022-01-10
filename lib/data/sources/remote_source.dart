@@ -1,27 +1,36 @@
 import 'dart:convert';
+
 import 'package:flutter_clean_architecture/data/models/person/person_model.dart';
+import 'package:flutter_clean_architecture/data/models/video/playlist_model.dart';
+import 'package:flutter_clean_architecture/data/models/video/video_model.dart';
+import 'package:flutter_clean_architecture/util/constants.dart';
 import 'package:flutter_clean_architecture/util/exeptions.dart';
 import 'package:http/http.dart' as http;
 
-abstract class PersonRemoteDataSource {
+abstract class RemoteDataSource {
   Future<List<PersonModel>> getAllPersons(int page);
 
   Future<List<PersonModel>> searchPerson(String query);
+
+  Future<List<PlaylistModel>> getPlaylists();
+
+  Future<List<VideoModel>> getVideos();
 }
 
-class PersonRemoteDataSourceImpl extends PersonRemoteDataSource {
+class RemoteDataSourceImpl extends RemoteDataSource {
   final http.Client client;
-  final baseUrl = 'https://rickandmortyapi.com/api/character';
+  final rmBaseUrl = 'https://rickandmortyapi.com/api/character';
+  final youtubeBaseUrl = 'https://www.googleapis.com/youtube/v3/';
 
-  PersonRemoteDataSourceImpl({required this.client});
+  RemoteDataSourceImpl({required this.client});
 
   @override
   Future<List<PersonModel>> getAllPersons(int page) =>
-      _getFromUrl('$baseUrl/?page=$page');
+      _getFromUrl('$rmBaseUrl/?page=$page');
 
   @override
   Future<List<PersonModel>> searchPerson(String query) =>
-      _getFromUrl('$baseUrl/?name=$query');
+      _getFromUrl('$rmBaseUrl/?name=$query');
 
   Future<List<PersonModel>> _getFromUrl(String url) async {
     final response = await client
@@ -30,6 +39,39 @@ class PersonRemoteDataSourceImpl extends PersonRemoteDataSource {
       final listPerson = json.decode(response.body);
       return (listPerson['results'] as List)
           .map((e) => PersonModel.fromJson(e))
+          .toList();
+    } else {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<List<PlaylistModel>> getPlaylists() async {
+    final response = await client.get(
+        Uri.parse(
+            '${youtubeBaseUrl}playlists?part=snippet&channelId=UCwXdFgeE9KYzlDdR7TG9cMw&key=${Constants.youtubeApiKey}'),
+        headers: {'Content-Type': 'application/json'});
+    if (response.statusCode == 200) {
+      final jsonResponse = json.decode(response.body);
+      return (jsonResponse['items'] as List)
+          .map((e) => PlaylistModel.fromJson(e))
+          .toList();
+    } else {
+      print(response.statusCode);
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<List<VideoModel>> getVideos() async{
+    final response = await client.get(
+        Uri.parse(
+            '${youtubeBaseUrl}playlists?part=snippet&channelId=UCwXdFgeE9KYzlDdR7TG9cMw&key=${Constants.youtubeApiKey}'),
+        headers: {'Content-Type': 'application/json'});
+    if (response.statusCode == 200) {
+      final jsonResponse = json.decode(response.body);
+      return (jsonResponse['results'] as List)
+          .map((e) => VideoModel.fromJson(e))
           .toList();
     } else {
       throw ServerException();
