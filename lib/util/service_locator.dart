@@ -6,10 +6,12 @@ import 'package:flutter_clean_architecture/domain/repository/person_repository.d
 import 'package:flutter_clean_architecture/domain/repository/playlist_repository.dart';
 import 'package:flutter_clean_architecture/domain/use_cases/get_all.dart';
 import 'package:flutter_clean_architecture/domain/use_cases/get_playlist.dart';
+import 'package:flutter_clean_architecture/domain/use_cases/get_videolist.dart';
 import 'package:flutter_clean_architecture/domain/use_cases/search.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/list_cubit/list_cubit.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/playlist_cubit/playlist_cubit.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/search_bloc/search_bloc.dart';
+import 'package:flutter_clean_architecture/presentation/bloc/videoslist_cubit/videoslist_cubit.dart';
 import 'package:flutter_clean_architecture/util/connection_info.dart';
 import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
@@ -26,13 +28,18 @@ Future<void> init() async {
   serviceLocator.registerFactory(
     () => PersonSearchBloc(searchPerson: serviceLocator()),
   );
-  serviceLocator
-      .registerFactory(() => PlaylistCubit(getPlaylist: serviceLocator()));
+  serviceLocator.registerFactory(
+    () => PlaylistCubit(getPlaylist: serviceLocator()),
+  );
+  serviceLocator.registerFactory(
+        () => VideoListCubit(getVideos: serviceLocator()),
+  );
 
   // UseCases
   serviceLocator.registerLazySingleton(() => GetAllPersons(serviceLocator()));
   serviceLocator.registerLazySingleton(() => SearchPerson(serviceLocator()));
   serviceLocator.registerLazySingleton(() => GetPlaylist(serviceLocator()));
+  serviceLocator.registerLazySingleton(() => GetVideoList(serviceLocator()));
 
   // Repository
   serviceLocator.registerLazySingleton<PersonRepository>(
@@ -44,7 +51,7 @@ Future<void> init() async {
   );
 
   serviceLocator.registerLazySingleton<PlaylistRepository>(
-        () => PlaylistRepositoryImpl(
+    () => PlaylistRepositoryImpl(
       remoteDataSource: serviceLocator(),
       connectionInfo: serviceLocator(),
     ),

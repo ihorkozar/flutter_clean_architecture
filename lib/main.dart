@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/list_cubit/list_cubit.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/playlist_cubit/playlist_cubit.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/search_bloc/search_bloc.dart';
+import 'package:flutter_clean_architecture/presentation/bloc/videoslist_cubit/videoslist_cubit.dart';
 import 'package:flutter_clean_architecture/routes/router.gr.dart';
 import 'package:flutter_clean_architecture/util/app_style.dart';
 import 'package:flutter_clean_architecture/util/service_locator.dart' as sl;
@@ -29,7 +30,12 @@ class MyApp extends StatelessWidget {
         BlocProvider<PersonSearchBloc>(
           create: (context) => serviceLocator<PersonSearchBloc>(),
         ),
-        BlocProvider<PlaylistCubit>(create: (context) => serviceLocator<PlaylistCubit>()..loadPlaylist(),)
+        BlocProvider<PlaylistCubit>(
+          create: (context) => serviceLocator<PlaylistCubit>()..loadPlaylist(),
+        ),
+        BlocProvider<VideoListCubit>(
+          create: (context) => serviceLocator<VideoListCubit>()..loadVideoList('PLjxrf2q8roU0c3fPxw_74FQ6mTYknkhkd'),
+        )
       ],
       child: MaterialApp.router(
         routerDelegate: _appRouter.delegate(),

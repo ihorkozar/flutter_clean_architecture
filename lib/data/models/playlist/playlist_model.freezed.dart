@@ -22,16 +22,10 @@ PlaylistModel _$PlaylistModelFromJson(Map<String, dynamic> json) {
 class _$PlaylistModelTearOff {
   const _$PlaylistModelTearOff();
 
-  _PlaylistModel call(
-      {required String? id,
-      required String? title,
-      required String? image,
-      required String? description}) {
+  _PlaylistModel call({required String id, required SnippetModel snippet}) {
     return _PlaylistModel(
       id: id,
-      title: title,
-      image: image,
-      description: description,
+      snippet: snippet,
     );
   }
 
@@ -45,10 +39,8 @@ const $PlaylistModel = _$PlaylistModelTearOff();
 
 /// @nodoc
 mixin _$PlaylistModel {
-  String? get id => throw _privateConstructorUsedError;
-  String? get title => throw _privateConstructorUsedError;
-  String? get image => throw _privateConstructorUsedError;
-  String? get description => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  SnippetModel get snippet => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -61,7 +53,9 @@ abstract class $PlaylistModelCopyWith<$Res> {
   factory $PlaylistModelCopyWith(
           PlaylistModel value, $Res Function(PlaylistModel) then) =
       _$PlaylistModelCopyWithImpl<$Res>;
-  $Res call({String? id, String? title, String? image, String? description});
+  $Res call({String id, SnippetModel snippet});
+
+  $SnippetModelCopyWith<$Res> get snippet;
 }
 
 /// @nodoc
@@ -76,28 +70,25 @@ class _$PlaylistModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? title = freezed,
-    Object? image = freezed,
-    Object? description = freezed,
+    Object? snippet = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: title == freezed
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      image: image == freezed
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: description == freezed
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      snippet: snippet == freezed
+          ? _value.snippet
+          : snippet // ignore: cast_nullable_to_non_nullable
+              as SnippetModel,
     ));
+  }
+
+  @override
+  $SnippetModelCopyWith<$Res> get snippet {
+    return $SnippetModelCopyWith<$Res>(_value.snippet, (value) {
+      return _then(_value.copyWith(snippet: value));
+    });
   }
 }
 
@@ -108,7 +99,10 @@ abstract class _$PlaylistModelCopyWith<$Res>
           _PlaylistModel value, $Res Function(_PlaylistModel) then) =
       __$PlaylistModelCopyWithImpl<$Res>;
   @override
-  $Res call({String? id, String? title, String? image, String? description});
+  $Res call({String id, SnippetModel snippet});
+
+  @override
+  $SnippetModelCopyWith<$Res> get snippet;
 }
 
 /// @nodoc
@@ -125,27 +119,17 @@ class __$PlaylistModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? title = freezed,
-    Object? image = freezed,
-    Object? description = freezed,
+    Object? snippet = freezed,
   }) {
     return _then(_PlaylistModel(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
-      title: title == freezed
-          ? _value.title
-          : title // ignore: cast_nullable_to_non_nullable
-              as String?,
-      image: image == freezed
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as String?,
-      description: description == freezed
-          ? _value.description
-          : description // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
+      snippet: snippet == freezed
+          ? _value.snippet
+          : snippet // ignore: cast_nullable_to_non_nullable
+              as SnippetModel,
     ));
   }
 }
@@ -153,27 +137,19 @@ class __$PlaylistModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_PlaylistModel implements _PlaylistModel {
-  const _$_PlaylistModel(
-      {required this.id,
-      required this.title,
-      required this.image,
-      required this.description});
+  const _$_PlaylistModel({required this.id, required this.snippet});
 
   factory _$_PlaylistModel.fromJson(Map<String, dynamic> json) =>
       _$$_PlaylistModelFromJson(json);
 
   @override
-  final String? id;
+  final String id;
   @override
-  final String? title;
-  @override
-  final String? image;
-  @override
-  final String? description;
+  final SnippetModel snippet;
 
   @override
   String toString() {
-    return 'PlaylistModel(id: $id, title: $title, image: $image, description: $description)';
+    return 'PlaylistModel(id: $id, snippet: $snippet)';
   }
 
   @override
@@ -182,19 +158,14 @@ class _$_PlaylistModel implements _PlaylistModel {
         (other.runtimeType == runtimeType &&
             other is _PlaylistModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.title, title) &&
-            const DeepCollectionEquality().equals(other.image, image) &&
-            const DeepCollectionEquality()
-                .equals(other.description, description));
+            const DeepCollectionEquality().equals(other.snippet, snippet));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(title),
-      const DeepCollectionEquality().hash(image),
-      const DeepCollectionEquality().hash(description));
+      const DeepCollectionEquality().hash(snippet));
 
   @JsonKey(ignore: true)
   @override
@@ -209,22 +180,15 @@ class _$_PlaylistModel implements _PlaylistModel {
 
 abstract class _PlaylistModel implements PlaylistModel {
   const factory _PlaylistModel(
-      {required String? id,
-      required String? title,
-      required String? image,
-      required String? description}) = _$_PlaylistModel;
+      {required String id, required SnippetModel snippet}) = _$_PlaylistModel;
 
   factory _PlaylistModel.fromJson(Map<String, dynamic> json) =
       _$_PlaylistModel.fromJson;
 
   @override
-  String? get id;
+  String get id;
   @override
-  String? get title;
-  @override
-  String? get image;
-  @override
-  String? get description;
+  SnippetModel get snippet;
   @override
   @JsonKey(ignore: true)
   _$PlaylistModelCopyWith<_PlaylistModel> get copyWith =>

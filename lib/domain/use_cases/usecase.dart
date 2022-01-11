@@ -5,3 +5,7 @@ abstract class UseCase<Type, Params>{
   //прикольная штука - если метод назвать call то потом можно не указывать его при вызове
   Future<Either<Failure, Type>> call(Params params);
 }
+abstract class VideoUseCase<Type>{
+  //прикольная штука - если метод назвать call то потом можно не указывать его при вызове
+  Future<Either<Failure, Type>> call();
+}

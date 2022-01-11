@@ -4,6 +4,7 @@ import 'package:flutter_clean_architecture/presentation/screens/detail_screen.da
 import 'package:flutter_clean_architecture/presentation/screens/overview_screen.dart';
 import 'package:flutter_clean_architecture/presentation/screens/playlists_screen.dart';
 import 'package:flutter_clean_architecture/presentation/screens/splash_screen.dart';
+import 'package:flutter_clean_architecture/presentation/screens/video_screen.dart';
 import 'package:flutter_clean_architecture/routes/route_constants.dart';
 
 @MaterialAutoRouter(
@@ -13,7 +14,8 @@ import 'package:flutter_clean_architecture/routes/route_constants.dart';
     AutoRoute(page: HomePage, path: RouteConstants.home),
     AutoRoute(page: PersonDetailPage, path: RouteConstants.detail),
     AutoRoute(page: SearchResult, path: RouteConstants.search),
-    AutoRoute(page: SongsPage, path: RouteConstants.songs),
+    AutoRoute(page: PlaylistsPage, path: RouteConstants.playlists),
+    AutoRoute(page: VideosScreen, path: RouteConstants.videos),
   ],
 )
 class $AppRouter {}

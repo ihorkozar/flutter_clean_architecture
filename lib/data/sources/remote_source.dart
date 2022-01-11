@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter_clean_architecture/data/models/person/person_model.dart';
-import 'package:flutter_clean_architecture/data/models/video/playlist_model.dart';
-import 'package:flutter_clean_architecture/data/models/video/video_model.dart';
+import 'package:flutter_clean_architecture/data/models/playlist/playlist_model.dart';
+import 'package:flutter_clean_architecture/data/models/video/youtube_video_model.dart';
 import 'package:flutter_clean_architecture/util/constants.dart';
 import 'package:flutter_clean_architecture/util/exeptions.dart';
 import 'package:http/http.dart' as http;
@@ -14,7 +14,7 @@ abstract class RemoteDataSource {
 
   Future<List<PlaylistModel>> getPlaylists();
 
-  Future<List<VideoModel>> getVideos();
+  Future<List<YouTubeVideoModel>> getVideos(String id);
 }
 
 class RemoteDataSourceImpl extends RemoteDataSource {
@@ -53,6 +53,7 @@ class RemoteDataSourceImpl extends RemoteDataSource {
         headers: {'Content-Type': 'application/json'});
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);
+      print(jsonResponse);
       return (jsonResponse['items'] as List)
           .map((e) => PlaylistModel.fromJson(e))
           .toList();
@@ -63,17 +64,19 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   }
 
   @override
-  Future<List<VideoModel>> getVideos() async{
+  Future<List<YouTubeVideoModel>> getVideos(String id) async{
     final response = await client.get(
         Uri.parse(
-            '${youtubeBaseUrl}playlists?part=snippet&channelId=UCwXdFgeE9KYzlDdR7TG9cMw&key=${Constants.youtubeApiKey}'),
+            '${youtubeBaseUrl}playlistItems?part=snippet&key=${Constants.youtubeApiKey}&maxResults=50&playlistId=$id'),
         headers: {'Content-Type': 'application/json'});
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);
-      return (jsonResponse['results'] as List)
-          .map((e) => VideoModel.fromJson(e))
+      print(jsonResponse);
+      return (jsonResponse['items'] as List)
+          .map((e) => YouTubeVideoModel.fromJson(e))
           .toList();
     } else {
+      print(response.statusCode);
       throw ServerException();
     }
   }

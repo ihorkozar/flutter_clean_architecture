@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/data/models/person/person_model.dart';
-import 'package:flutter_clean_architecture/presentation/custom_widgets/search_result_card.dart';
+import 'package:flutter_clean_architecture/presentation/custom_widgets/cards/search_result_card.dart';
 import 'package:flutter_clean_architecture/routes/router.gr.dart';
 
 class SearchResult extends StatelessWidget {

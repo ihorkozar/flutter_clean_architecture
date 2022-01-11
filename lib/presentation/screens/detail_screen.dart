@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/data/models/person/person_model.dart';
-import 'package:flutter_clean_architecture/presentation/custom_widgets/cache_image.dart';
+import 'package:flutter_clean_architecture/presentation/custom_widgets/cards/cache_image.dart';
 import 'package:flutter_clean_architecture/util/app_style.dart';
 
 class PersonDetailPage extends StatelessWidget {

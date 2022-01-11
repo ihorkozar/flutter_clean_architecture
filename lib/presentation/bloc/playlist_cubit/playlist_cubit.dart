@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_clean_architecture/data/models/video/playlist_model.dart';
+import 'package:flutter_clean_architecture/data/models/playlist/playlist_model.dart';
 import 'package:flutter_clean_architecture/domain/use_cases/get_playlist.dart';
 import 'package:flutter_clean_architecture/util/constants.dart';
 import 'package:flutter_clean_architecture/util/failure.dart';
@@ -27,14 +27,13 @@ class PlaylistCubit extends Cubit<PlaylistState> {
 
     emit(PlaylistLoading(oldPerson, isFirstFetch: page == 1));
 
-    final failureOrPlaylist = await getPlaylist(PageParams(page: page));
+    final failureOrPlaylist = await getPlaylist();
 
     failureOrPlaylist.fold((error) => emit(PlaylistError(message: _mapFailureToMessage(error))), (character) {
       page++;
       final playlists = (state as PlaylistLoading).oldPlayList;
       playlists.addAll(character);
       print('PlayList length: ${playlists.length.toString()}');
-      print(playlists.first.image);
       emit(PlaylistLoaded(playlists));
     });
   }

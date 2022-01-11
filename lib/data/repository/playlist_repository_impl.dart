@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_clean_architecture/data/models/person/person_model.dart';
-import 'package:flutter_clean_architecture/data/models/video/playlist_model.dart';
-import 'package:flutter_clean_architecture/data/models/video/video_model.dart';
+import 'package:flutter_clean_architecture/data/models/playlist/playlist_model.dart';
+import 'package:flutter_clean_architecture/data/models/video/youtube_video_model.dart';
 import 'package:flutter_clean_architecture/data/sources/local_source.dart';
 import 'package:flutter_clean_architecture/data/sources/remote_source.dart';
 import 'package:flutter_clean_architecture/domain/repository/person_repository.dart';
@@ -21,12 +21,6 @@ class PlaylistRepositoryImpl implements PlaylistRepository {
 
   @override
   Future<Either<Failure, List<PlaylistModel>>> getPlaylist() async{
-    try {
-      final remotePerson = await remoteDataSource.getPlaylists();
-      return Right(remotePerson);
-    } on ServerException {
-      return Left(ServerFailure());
-    }
     if (await connectionInfo.isConnected) {
       try {
         final remotePerson = await remoteDataSource.getPlaylists();
@@ -40,10 +34,10 @@ class PlaylistRepositoryImpl implements PlaylistRepository {
   }
 
   @override
-  Future<Either<Failure, List<VideoModel>>> getVideos() async{
+  Future<Either<Failure, List<YouTubeVideoModel>>> getVideos(String playlistId) async{
     if (await connectionInfo.isConnected) {
       try {
-        final remotePerson = await remoteDataSource.getVideos();
+        final remotePerson = await remoteDataSource.getVideos(playlistId);
         return Right(remotePerson);
       } on ServerException {
         return Left(ServerFailure());

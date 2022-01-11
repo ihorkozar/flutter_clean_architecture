@@ -6,7 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/data/models/person/person_model.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/list_cubit/list_cubit.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/list_cubit/list_state.dart';
-import 'card.dart';
+import '../cards/card.dart';
 
 class PersonsList extends StatelessWidget {
   final scrollController = ScrollController();

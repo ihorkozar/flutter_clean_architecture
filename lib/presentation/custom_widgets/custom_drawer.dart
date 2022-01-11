@@ -42,9 +42,9 @@ class CustomDrawer extends StatelessWidget {
               color: Colors.grey[400],
             ),
             ListTile(
-              title: const Text('Songs'),
+              title: const Text('Playlists'),
               onTap: () {
-                AutoRouter.of(context).pushNamed(RouteConstants.songs);
+                AutoRouter.of(context).pushNamed(RouteConstants.playlists);
               },
             ),
             Divider(
