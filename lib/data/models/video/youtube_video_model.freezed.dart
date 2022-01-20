@@ -23,9 +23,7 @@ class _$YouTubeVideoModelTearOff {
   const _$YouTubeVideoModelTearOff();
 
   _YouTubeVideoModel call(
-      {required String kind,
-      required String etag,
-      required List<Item?> items}) {
+      {required String kind, required String etag, required List<Item> items}) {
     return _YouTubeVideoModel(
       kind: kind,
       etag: etag,
@@ -45,7 +43,7 @@ const $YouTubeVideoModel = _$YouTubeVideoModelTearOff();
 mixin _$YouTubeVideoModel {
   String get kind => throw _privateConstructorUsedError;
   String get etag => throw _privateConstructorUsedError;
-  List<Item?> get items => throw _privateConstructorUsedError;
+  List<Item> get items => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -58,7 +56,7 @@ abstract class $YouTubeVideoModelCopyWith<$Res> {
   factory $YouTubeVideoModelCopyWith(
           YouTubeVideoModel value, $Res Function(YouTubeVideoModel) then) =
       _$YouTubeVideoModelCopyWithImpl<$Res>;
-  $Res call({String kind, String etag, List<Item?> items});
+  $Res call({String kind, String etag, List<Item> items});
 }
 
 /// @nodoc
@@ -88,7 +86,7 @@ class _$YouTubeVideoModelCopyWithImpl<$Res>
       items: items == freezed
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Item?>,
+              as List<Item>,
     ));
   }
 }
@@ -100,7 +98,7 @@ abstract class _$YouTubeVideoModelCopyWith<$Res>
           _YouTubeVideoModel value, $Res Function(_YouTubeVideoModel) then) =
       __$YouTubeVideoModelCopyWithImpl<$Res>;
   @override
-  $Res call({String kind, String etag, List<Item?> items});
+  $Res call({String kind, String etag, List<Item> items});
 }
 
 /// @nodoc
@@ -132,13 +130,14 @@ class __$YouTubeVideoModelCopyWithImpl<$Res>
       items: items == freezed
           ? _value.items
           : items // ignore: cast_nullable_to_non_nullable
-              as List<Item?>,
+              as List<Item>,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_YouTubeVideoModel implements _YouTubeVideoModel {
   const _$_YouTubeVideoModel(
       {required this.kind, required this.etag, required this.items});
@@ -151,7 +150,7 @@ class _$_YouTubeVideoModel implements _YouTubeVideoModel {
   @override
   final String etag;
   @override
-  final List<Item?> items;
+  final List<Item> items;
 
   @override
   String toString() {
@@ -190,7 +189,7 @@ abstract class _YouTubeVideoModel implements YouTubeVideoModel {
   const factory _YouTubeVideoModel(
       {required String kind,
       required String etag,
-      required List<Item?> items}) = _$_YouTubeVideoModel;
+      required List<Item> items}) = _$_YouTubeVideoModel;
 
   factory _YouTubeVideoModel.fromJson(Map<String, dynamic> json) =
       _$_YouTubeVideoModel.fromJson;
@@ -200,7 +199,7 @@ abstract class _YouTubeVideoModel implements YouTubeVideoModel {
   @override
   String get etag;
   @override
-  List<Item?> get items;
+  List<Item> get items;
   @override
   @JsonKey(ignore: true)
   _$YouTubeVideoModelCopyWith<_YouTubeVideoModel> get copyWith =>
@@ -438,7 +437,6 @@ class _$SnippetTearOff {
       required String channelId,
       required String title,
       required String description,
-      required Thumbnails thumbnails,
       required String channelTitle,
       required String playlistId,
       required ResourceId resourceId}) {
@@ -447,7 +445,6 @@ class _$SnippetTearOff {
       channelId: channelId,
       title: title,
       description: description,
-      thumbnails: thumbnails,
       channelTitle: channelTitle,
       playlistId: playlistId,
       resourceId: resourceId,
@@ -467,8 +464,8 @@ mixin _$Snippet {
   DateTime get publishedAt => throw _privateConstructorUsedError;
   String get channelId => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
-  String get description => throw _privateConstructorUsedError;
-  Thumbnails get thumbnails => throw _privateConstructorUsedError;
+  String get description =>
+      throw _privateConstructorUsedError; //required Thumbnails thumbnails,
   String get channelTitle => throw _privateConstructorUsedError;
   String get playlistId => throw _privateConstructorUsedError;
   ResourceId get resourceId => throw _privateConstructorUsedError;
@@ -487,12 +484,10 @@ abstract class $SnippetCopyWith<$Res> {
       String channelId,
       String title,
       String description,
-      Thumbnails thumbnails,
       String channelTitle,
       String playlistId,
       ResourceId resourceId});
 
-  $ThumbnailsCopyWith<$Res> get thumbnails;
   $ResourceIdCopyWith<$Res> get resourceId;
 }
 
@@ -510,7 +505,6 @@ class _$SnippetCopyWithImpl<$Res> implements $SnippetCopyWith<$Res> {
     Object? channelId = freezed,
     Object? title = freezed,
     Object? description = freezed,
-    Object? thumbnails = freezed,
     Object? channelTitle = freezed,
     Object? playlistId = freezed,
     Object? resourceId = freezed,
@@ -532,10 +526,6 @@ class _$SnippetCopyWithImpl<$Res> implements $SnippetCopyWith<$Res> {
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      thumbnails: thumbnails == freezed
-          ? _value.thumbnails
-          : thumbnails // ignore: cast_nullable_to_non_nullable
-              as Thumbnails,
       channelTitle: channelTitle == freezed
           ? _value.channelTitle
           : channelTitle // ignore: cast_nullable_to_non_nullable
@@ -549,13 +539,6 @@ class _$SnippetCopyWithImpl<$Res> implements $SnippetCopyWith<$Res> {
           : resourceId // ignore: cast_nullable_to_non_nullable
               as ResourceId,
     ));
-  }
-
-  @override
-  $ThumbnailsCopyWith<$Res> get thumbnails {
-    return $ThumbnailsCopyWith<$Res>(_value.thumbnails, (value) {
-      return _then(_value.copyWith(thumbnails: value));
-    });
   }
 
   @override
@@ -576,13 +559,10 @@ abstract class _$SnippetCopyWith<$Res> implements $SnippetCopyWith<$Res> {
       String channelId,
       String title,
       String description,
-      Thumbnails thumbnails,
       String channelTitle,
       String playlistId,
       ResourceId resourceId});
 
-  @override
-  $ThumbnailsCopyWith<$Res> get thumbnails;
   @override
   $ResourceIdCopyWith<$Res> get resourceId;
 }
@@ -602,7 +582,6 @@ class __$SnippetCopyWithImpl<$Res> extends _$SnippetCopyWithImpl<$Res>
     Object? channelId = freezed,
     Object? title = freezed,
     Object? description = freezed,
-    Object? thumbnails = freezed,
     Object? channelTitle = freezed,
     Object? playlistId = freezed,
     Object? resourceId = freezed,
@@ -624,10 +603,6 @@ class __$SnippetCopyWithImpl<$Res> extends _$SnippetCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
-      thumbnails: thumbnails == freezed
-          ? _value.thumbnails
-          : thumbnails // ignore: cast_nullable_to_non_nullable
-              as Thumbnails,
       channelTitle: channelTitle == freezed
           ? _value.channelTitle
           : channelTitle // ignore: cast_nullable_to_non_nullable
@@ -652,7 +627,6 @@ class _$_Snippet implements _Snippet {
       required this.channelId,
       required this.title,
       required this.description,
-      required this.thumbnails,
       required this.channelTitle,
       required this.playlistId,
       required this.resourceId});
@@ -668,9 +642,7 @@ class _$_Snippet implements _Snippet {
   final String title;
   @override
   final String description;
-  @override
-  final Thumbnails thumbnails;
-  @override
+  @override //required Thumbnails thumbnails,
   final String channelTitle;
   @override
   final String playlistId;
@@ -679,7 +651,7 @@ class _$_Snippet implements _Snippet {
 
   @override
   String toString() {
-    return 'Snippet(publishedAt: $publishedAt, channelId: $channelId, title: $title, description: $description, thumbnails: $thumbnails, channelTitle: $channelTitle, playlistId: $playlistId, resourceId: $resourceId)';
+    return 'Snippet(publishedAt: $publishedAt, channelId: $channelId, title: $title, description: $description, channelTitle: $channelTitle, playlistId: $playlistId, resourceId: $resourceId)';
   }
 
   @override
@@ -693,8 +665,6 @@ class _$_Snippet implements _Snippet {
             const DeepCollectionEquality().equals(other.title, title) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
-            const DeepCollectionEquality()
-                .equals(other.thumbnails, thumbnails) &&
             const DeepCollectionEquality()
                 .equals(other.channelTitle, channelTitle) &&
             const DeepCollectionEquality()
@@ -710,7 +680,6 @@ class _$_Snippet implements _Snippet {
       const DeepCollectionEquality().hash(channelId),
       const DeepCollectionEquality().hash(title),
       const DeepCollectionEquality().hash(description),
-      const DeepCollectionEquality().hash(thumbnails),
       const DeepCollectionEquality().hash(channelTitle),
       const DeepCollectionEquality().hash(playlistId),
       const DeepCollectionEquality().hash(resourceId));
@@ -732,7 +701,6 @@ abstract class _Snippet implements Snippet {
       required String channelId,
       required String title,
       required String description,
-      required Thumbnails thumbnails,
       required String channelTitle,
       required String playlistId,
       required ResourceId resourceId}) = _$_Snippet;
@@ -747,9 +715,7 @@ abstract class _Snippet implements Snippet {
   String get title;
   @override
   String get description;
-  @override
-  Thumbnails get thumbnails;
-  @override
+  @override //required Thumbnails thumbnails,
   String get channelTitle;
   @override
   String get playlistId;
@@ -924,505 +890,5 @@ abstract class _ResourceId implements ResourceId {
   @override
   @JsonKey(ignore: true)
   _$ResourceIdCopyWith<_ResourceId> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-Thumbnails _$ThumbnailsFromJson(Map<String, dynamic> json) {
-  return _Thumbnails.fromJson(json);
-}
-
-/// @nodoc
-class _$ThumbnailsTearOff {
-  const _$ThumbnailsTearOff();
-
-  _Thumbnails call(
-      {Default? thumbnailsDefault,
-      Default? medium,
-      Default? high,
-      Default? standard,
-      Default? maxres}) {
-    return _Thumbnails(
-      thumbnailsDefault: thumbnailsDefault,
-      medium: medium,
-      high: high,
-      standard: standard,
-      maxres: maxres,
-    );
-  }
-
-  Thumbnails fromJson(Map<String, Object?> json) {
-    return Thumbnails.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Thumbnails = _$ThumbnailsTearOff();
-
-/// @nodoc
-mixin _$Thumbnails {
-  Default? get thumbnailsDefault => throw _privateConstructorUsedError;
-  Default? get medium => throw _privateConstructorUsedError;
-  Default? get high => throw _privateConstructorUsedError;
-  Default? get standard => throw _privateConstructorUsedError;
-  Default? get maxres => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ThumbnailsCopyWith<Thumbnails> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ThumbnailsCopyWith<$Res> {
-  factory $ThumbnailsCopyWith(
-          Thumbnails value, $Res Function(Thumbnails) then) =
-      _$ThumbnailsCopyWithImpl<$Res>;
-  $Res call(
-      {Default? thumbnailsDefault,
-      Default? medium,
-      Default? high,
-      Default? standard,
-      Default? maxres});
-
-  $DefaultCopyWith<$Res>? get thumbnailsDefault;
-  $DefaultCopyWith<$Res>? get medium;
-  $DefaultCopyWith<$Res>? get high;
-  $DefaultCopyWith<$Res>? get standard;
-  $DefaultCopyWith<$Res>? get maxres;
-}
-
-/// @nodoc
-class _$ThumbnailsCopyWithImpl<$Res> implements $ThumbnailsCopyWith<$Res> {
-  _$ThumbnailsCopyWithImpl(this._value, this._then);
-
-  final Thumbnails _value;
-  // ignore: unused_field
-  final $Res Function(Thumbnails) _then;
-
-  @override
-  $Res call({
-    Object? thumbnailsDefault = freezed,
-    Object? medium = freezed,
-    Object? high = freezed,
-    Object? standard = freezed,
-    Object? maxres = freezed,
-  }) {
-    return _then(_value.copyWith(
-      thumbnailsDefault: thumbnailsDefault == freezed
-          ? _value.thumbnailsDefault
-          : thumbnailsDefault // ignore: cast_nullable_to_non_nullable
-              as Default?,
-      medium: medium == freezed
-          ? _value.medium
-          : medium // ignore: cast_nullable_to_non_nullable
-              as Default?,
-      high: high == freezed
-          ? _value.high
-          : high // ignore: cast_nullable_to_non_nullable
-              as Default?,
-      standard: standard == freezed
-          ? _value.standard
-          : standard // ignore: cast_nullable_to_non_nullable
-              as Default?,
-      maxres: maxres == freezed
-          ? _value.maxres
-          : maxres // ignore: cast_nullable_to_non_nullable
-              as Default?,
-    ));
-  }
-
-  @override
-  $DefaultCopyWith<$Res>? get thumbnailsDefault {
-    if (_value.thumbnailsDefault == null) {
-      return null;
-    }
-
-    return $DefaultCopyWith<$Res>(_value.thumbnailsDefault!, (value) {
-      return _then(_value.copyWith(thumbnailsDefault: value));
-    });
-  }
-
-  @override
-  $DefaultCopyWith<$Res>? get medium {
-    if (_value.medium == null) {
-      return null;
-    }
-
-    return $DefaultCopyWith<$Res>(_value.medium!, (value) {
-      return _then(_value.copyWith(medium: value));
-    });
-  }
-
-  @override
-  $DefaultCopyWith<$Res>? get high {
-    if (_value.high == null) {
-      return null;
-    }
-
-    return $DefaultCopyWith<$Res>(_value.high!, (value) {
-      return _then(_value.copyWith(high: value));
-    });
-  }
-
-  @override
-  $DefaultCopyWith<$Res>? get standard {
-    if (_value.standard == null) {
-      return null;
-    }
-
-    return $DefaultCopyWith<$Res>(_value.standard!, (value) {
-      return _then(_value.copyWith(standard: value));
-    });
-  }
-
-  @override
-  $DefaultCopyWith<$Res>? get maxres {
-    if (_value.maxres == null) {
-      return null;
-    }
-
-    return $DefaultCopyWith<$Res>(_value.maxres!, (value) {
-      return _then(_value.copyWith(maxres: value));
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$ThumbnailsCopyWith<$Res> implements $ThumbnailsCopyWith<$Res> {
-  factory _$ThumbnailsCopyWith(
-          _Thumbnails value, $Res Function(_Thumbnails) then) =
-      __$ThumbnailsCopyWithImpl<$Res>;
-  @override
-  $Res call(
-      {Default? thumbnailsDefault,
-      Default? medium,
-      Default? high,
-      Default? standard,
-      Default? maxres});
-
-  @override
-  $DefaultCopyWith<$Res>? get thumbnailsDefault;
-  @override
-  $DefaultCopyWith<$Res>? get medium;
-  @override
-  $DefaultCopyWith<$Res>? get high;
-  @override
-  $DefaultCopyWith<$Res>? get standard;
-  @override
-  $DefaultCopyWith<$Res>? get maxres;
-}
-
-/// @nodoc
-class __$ThumbnailsCopyWithImpl<$Res> extends _$ThumbnailsCopyWithImpl<$Res>
-    implements _$ThumbnailsCopyWith<$Res> {
-  __$ThumbnailsCopyWithImpl(
-      _Thumbnails _value, $Res Function(_Thumbnails) _then)
-      : super(_value, (v) => _then(v as _Thumbnails));
-
-  @override
-  _Thumbnails get _value => super._value as _Thumbnails;
-
-  @override
-  $Res call({
-    Object? thumbnailsDefault = freezed,
-    Object? medium = freezed,
-    Object? high = freezed,
-    Object? standard = freezed,
-    Object? maxres = freezed,
-  }) {
-    return _then(_Thumbnails(
-      thumbnailsDefault: thumbnailsDefault == freezed
-          ? _value.thumbnailsDefault
-          : thumbnailsDefault // ignore: cast_nullable_to_non_nullable
-              as Default?,
-      medium: medium == freezed
-          ? _value.medium
-          : medium // ignore: cast_nullable_to_non_nullable
-              as Default?,
-      high: high == freezed
-          ? _value.high
-          : high // ignore: cast_nullable_to_non_nullable
-              as Default?,
-      standard: standard == freezed
-          ? _value.standard
-          : standard // ignore: cast_nullable_to_non_nullable
-              as Default?,
-      maxres: maxres == freezed
-          ? _value.maxres
-          : maxres // ignore: cast_nullable_to_non_nullable
-              as Default?,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_Thumbnails implements _Thumbnails {
-  const _$_Thumbnails(
-      {this.thumbnailsDefault,
-      this.medium,
-      this.high,
-      this.standard,
-      this.maxres});
-
-  factory _$_Thumbnails.fromJson(Map<String, dynamic> json) =>
-      _$$_ThumbnailsFromJson(json);
-
-  @override
-  final Default? thumbnailsDefault;
-  @override
-  final Default? medium;
-  @override
-  final Default? high;
-  @override
-  final Default? standard;
-  @override
-  final Default? maxres;
-
-  @override
-  String toString() {
-    return 'Thumbnails(thumbnailsDefault: $thumbnailsDefault, medium: $medium, high: $high, standard: $standard, maxres: $maxres)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _Thumbnails &&
-            const DeepCollectionEquality()
-                .equals(other.thumbnailsDefault, thumbnailsDefault) &&
-            const DeepCollectionEquality().equals(other.medium, medium) &&
-            const DeepCollectionEquality().equals(other.high, high) &&
-            const DeepCollectionEquality().equals(other.standard, standard) &&
-            const DeepCollectionEquality().equals(other.maxres, maxres));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(thumbnailsDefault),
-      const DeepCollectionEquality().hash(medium),
-      const DeepCollectionEquality().hash(high),
-      const DeepCollectionEquality().hash(standard),
-      const DeepCollectionEquality().hash(maxres));
-
-  @JsonKey(ignore: true)
-  @override
-  _$ThumbnailsCopyWith<_Thumbnails> get copyWith =>
-      __$ThumbnailsCopyWithImpl<_Thumbnails>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_ThumbnailsToJson(this);
-  }
-}
-
-abstract class _Thumbnails implements Thumbnails {
-  const factory _Thumbnails(
-      {Default? thumbnailsDefault,
-      Default? medium,
-      Default? high,
-      Default? standard,
-      Default? maxres}) = _$_Thumbnails;
-
-  factory _Thumbnails.fromJson(Map<String, dynamic> json) =
-      _$_Thumbnails.fromJson;
-
-  @override
-  Default? get thumbnailsDefault;
-  @override
-  Default? get medium;
-  @override
-  Default? get high;
-  @override
-  Default? get standard;
-  @override
-  Default? get maxres;
-  @override
-  @JsonKey(ignore: true)
-  _$ThumbnailsCopyWith<_Thumbnails> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-Default _$DefaultFromJson(Map<String, dynamic> json) {
-  return _Default.fromJson(json);
-}
-
-/// @nodoc
-class _$DefaultTearOff {
-  const _$DefaultTearOff();
-
-  _Default call(
-      {required String url, required int width, required int height}) {
-    return _Default(
-      url: url,
-      width: width,
-      height: height,
-    );
-  }
-
-  Default fromJson(Map<String, Object?> json) {
-    return Default.fromJson(json);
-  }
-}
-
-/// @nodoc
-const $Default = _$DefaultTearOff();
-
-/// @nodoc
-mixin _$Default {
-  String get url => throw _privateConstructorUsedError;
-  int get width => throw _privateConstructorUsedError;
-  int get height => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $DefaultCopyWith<Default> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $DefaultCopyWith<$Res> {
-  factory $DefaultCopyWith(Default value, $Res Function(Default) then) =
-      _$DefaultCopyWithImpl<$Res>;
-  $Res call({String url, int width, int height});
-}
-
-/// @nodoc
-class _$DefaultCopyWithImpl<$Res> implements $DefaultCopyWith<$Res> {
-  _$DefaultCopyWithImpl(this._value, this._then);
-
-  final Default _value;
-  // ignore: unused_field
-  final $Res Function(Default) _then;
-
-  @override
-  $Res call({
-    Object? url = freezed,
-    Object? width = freezed,
-    Object? height = freezed,
-  }) {
-    return _then(_value.copyWith(
-      url: url == freezed
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-      width: width == freezed
-          ? _value.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as int,
-      height: height == freezed
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-abstract class _$DefaultCopyWith<$Res> implements $DefaultCopyWith<$Res> {
-  factory _$DefaultCopyWith(_Default value, $Res Function(_Default) then) =
-      __$DefaultCopyWithImpl<$Res>;
-  @override
-  $Res call({String url, int width, int height});
-}
-
-/// @nodoc
-class __$DefaultCopyWithImpl<$Res> extends _$DefaultCopyWithImpl<$Res>
-    implements _$DefaultCopyWith<$Res> {
-  __$DefaultCopyWithImpl(_Default _value, $Res Function(_Default) _then)
-      : super(_value, (v) => _then(v as _Default));
-
-  @override
-  _Default get _value => super._value as _Default;
-
-  @override
-  $Res call({
-    Object? url = freezed,
-    Object? width = freezed,
-    Object? height = freezed,
-  }) {
-    return _then(_Default(
-      url: url == freezed
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-      width: width == freezed
-          ? _value.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as int,
-      height: height == freezed
-          ? _value.height
-          : height // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_Default implements _Default {
-  const _$_Default(
-      {required this.url, required this.width, required this.height});
-
-  factory _$_Default.fromJson(Map<String, dynamic> json) =>
-      _$$_DefaultFromJson(json);
-
-  @override
-  final String url;
-  @override
-  final int width;
-  @override
-  final int height;
-
-  @override
-  String toString() {
-    return 'Default(url: $url, width: $width, height: $height)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _Default &&
-            const DeepCollectionEquality().equals(other.url, url) &&
-            const DeepCollectionEquality().equals(other.width, width) &&
-            const DeepCollectionEquality().equals(other.height, height));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(url),
-      const DeepCollectionEquality().hash(width),
-      const DeepCollectionEquality().hash(height));
-
-  @JsonKey(ignore: true)
-  @override
-  _$DefaultCopyWith<_Default> get copyWith =>
-      __$DefaultCopyWithImpl<_Default>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_DefaultToJson(this);
-  }
-}
-
-abstract class _Default implements Default {
-  const factory _Default(
-      {required String url,
-      required int width,
-      required int height}) = _$_Default;
-
-  factory _Default.fromJson(Map<String, dynamic> json) = _$_Default.fromJson;
-
-  @override
-  String get url;
-  @override
-  int get width;
-  @override
-  int get height;
-  @override
-  @JsonKey(ignore: true)
-  _$DefaultCopyWith<_Default> get copyWith =>
       throw _privateConstructorUsedError;
 }

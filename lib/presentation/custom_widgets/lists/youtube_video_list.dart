@@ -55,7 +55,7 @@ class YouTubeVideoList extends StatelessWidget {
           if (index < videos.length) {
             return Padding(
               padding: const EdgeInsets.all(8),
-              child: Text(videos[index].items.first?.id ?? 'error'),
+              child: Text(videos[index].items.first.id),
             );
           } else {
             Timer(const Duration(milliseconds: 30), () {
