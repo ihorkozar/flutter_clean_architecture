@@ -1,13 +1,9 @@
 import 'dart:async';
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_clean_architecture/data/models/playlist/playlist_model.dart';
 import 'package:flutter_clean_architecture/data/models/video/youtube_video_model.dart';
-import 'package:flutter_clean_architecture/presentation/bloc/playlist_cubit/playlist_cubit.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/videoslist_cubit/videoslist_cubit.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/videoslist_cubit/videoslist_state.dart';
-import '../cards/cache_image.dart';
 
 class YouTubeVideoList extends StatelessWidget {
   final scrollController = ScrollController();
@@ -55,7 +51,7 @@ class YouTubeVideoList extends StatelessWidget {
           if (index < videos.length) {
             return Padding(
               padding: const EdgeInsets.all(8),
-              child: Text(videos[index].items.first.id),
+              child: Text(videos[index].kind),
             );
           } else {
             Timer(const Duration(milliseconds: 30), () {

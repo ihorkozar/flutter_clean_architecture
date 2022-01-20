@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -96,6 +97,7 @@ class CustomSearchDelegate extends SearchDelegate {
   }
 
   Widget _showError(String errorMessage) {
+    String img = 'assets/images/rm_error${getRand()}.png';
     return Container(
       color: Colors.black,
       child: Center(
@@ -106,7 +108,7 @@ class CustomSearchDelegate extends SearchDelegate {
               width: 250,
               height: 250,
               child: Center(
-                child: Image.asset('assets/images/rm_error.png'),
+                child: Image.asset(img),
               ),
             ),
             const SizedBox(height: 32,),
@@ -121,6 +123,10 @@ class CustomSearchDelegate extends SearchDelegate {
         ),
       ),
     );
+  }
+
+  int getRand(){
+    return Random().nextInt(4);
   }
 
   @override
