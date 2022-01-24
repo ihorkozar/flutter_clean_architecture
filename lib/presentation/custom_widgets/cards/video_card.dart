@@ -6,12 +6,10 @@ import 'cache_image.dart';
 class VideoCard extends StatelessWidget {
   const VideoCard({
     Key? key,
-    required this.videos,
-    required this.index,
+    required this.video,
   }) : super(key: key);
 
-  final List<YouTubeVideoModel> videos;
-  final int index;
+  final YouTubeVideoModel video;
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +25,13 @@ class VideoCard extends StatelessWidget {
             height: 300,
             width: double.infinity,
             child: PersonCacheImage(
-              imageUrl: videos[index].snippet.thumbnails.high!.url,
+              imageUrl: video.snippet.thumbnails.high!.url,
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              videos[index].snippet.title,
+              video.snippet.title,
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 26.0,
@@ -43,7 +41,7 @@ class VideoCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              videos[index].snippet.resourceId.videoId,
+              video.snippet.resourceId.videoId,
               style: const TextStyle(
                 fontWeight: FontWeight.w400,
                 fontSize: 16.0,

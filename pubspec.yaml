@@ -15,7 +15,7 @@ dependencies:
   cupertino_icons: ^1.0.4
   equatable: ^2.0.3
   dartz: ^0.10.1
-  flutter_bloc: ^8.0.1
+  flutter_bloc: ^8.0.0
   #Network
   http: ^0.13.4
   universal_internet_checker: ^0.1.2

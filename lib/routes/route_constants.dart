@@ -5,4 +5,6 @@ class RouteConstants{
   static const search = 'search';
   static const playlists = 'playlists';
   static const videos = 'videos';
+  static const sample = 'sample';
+  static const videoDetail = 'videoDetail';
 }

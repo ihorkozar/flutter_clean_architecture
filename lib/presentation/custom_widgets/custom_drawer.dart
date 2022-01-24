@@ -52,6 +52,12 @@ class CustomDrawer extends StatelessWidget {
               endIndent: 8,
               color: Colors.grey[400],
             ),
+            ListTile(
+              title: const Text('Sample'),
+              onTap: () {
+                AutoRouter.of(context).pushNamed(RouteConstants.sample);
+              },
+            ),
           ],
         ),
       ),
