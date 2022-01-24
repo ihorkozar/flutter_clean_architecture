@@ -1,11 +1,12 @@
 import 'dart:async';
-import 'dart:io';
-import 'package:flutter/foundation.dart' show kIsWeb;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/data/models/person/person_model.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/list_cubit/list_cubit.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/list_cubit/list_state.dart';
+import 'package:flutter_clean_architecture/util/responcive.dart';
+
 import '../cards/card.dart';
 
 class PersonsList extends StatelessWidget {
@@ -45,18 +46,10 @@ class PersonsList extends StatelessWidget {
           style: const TextStyle(color: Colors.white, fontSize: 25),
         );
       }
-      if (kIsWeb || Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
-        return buildGridView(
-          persons,
-          isLoading,
-          MediaQuery.of(context).size.width,
-        );
-      } else {
-        return buildListView(
-          persons,
-          isLoading,
-        );
-      }
+      return Responsive.isMobile(context)
+          ? buildListView(persons, isLoading)
+          : buildGridView(
+              persons, isLoading, MediaQuery.of(context).size.width,);
     });
   }
 
@@ -66,9 +59,9 @@ class PersonsList extends StatelessWidget {
     double screenWidth,
   ) {
     int gridCount = 1;
-    if(screenWidth > 1480){
+    if (screenWidth > 1480) {
       gridCount = 3;
-    } else if(screenWidth > 980){
+    } else if (screenWidth > 980) {
       gridCount = 2;
     }
     return Padding(

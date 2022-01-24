@@ -28,12 +28,12 @@ class CustomDrawer extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                     ),
                     textAlign: TextAlign.center,
-                  )),
+                  ),),
             ),
             ListTile(
               title: const Text('Characters'),
               onTap: () {
-                AutoRouter.of(context).pushNamed(RouteConstants.home);
+                AutoRouter.of(context).pushNamed(RouteConstants.overview);
               },
             ),
             Divider(
@@ -51,6 +51,12 @@ class CustomDrawer extends StatelessWidget {
               indent: 8,
               endIndent: 8,
               color: Colors.grey[400],
+            ),
+            ListTile(
+              title: const Text('Sample'),
+              onTap: () {
+                AutoRouter.of(context).pushNamed(RouteConstants.sample);
+              },
             ),
           ],
         ),

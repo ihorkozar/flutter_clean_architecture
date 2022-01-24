@@ -33,6 +33,6 @@ class LocalDataSourceImpl extends LocalDataSource {
         persons.map((e) => json.encode(e.toJson())).toList();
 
     sharedPref.setStringList(cacheKey, jsonCacheList);
-    return Future.value(jsonCacheList);
+    return Future.value();
   }
 }

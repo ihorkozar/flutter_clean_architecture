@@ -1,8 +1,12 @@
 class RouteConstants{
   static const splash = 'splash';
-  static const home = 'home';
+  static const overview = 'overview';
   static const detail = 'detail';
-  static const search = 'search';
+
+  static const sample = 'sample';
+
+
   static const playlists = 'playlists';
   static const videos = 'videos';
+  static const videoDetail = 'videoDetail';
 }

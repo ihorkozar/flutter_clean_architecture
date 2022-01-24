@@ -1,22 +1,7 @@
-import 'dart:convert';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'youtube_video_model.freezed.dart';
-
 part 'youtube_video_model.g.dart';
-
-// @freezed
-// class YouTubeVideoModel with _$YouTubeVideoModel {
-//   const factory YouTubeVideoModel({
-//     required String kind,
-//     required String etag,
-//     //required List<Item> items,
-//   }) = _YouTubeVideoModel;
-//
-//   factory YouTubeVideoModel.fromJson(Map<String, dynamic> json) =>
-//       _$YouTubeVideoModelFromJson(json);
-// }
 
 @freezed
 class YouTubeVideoModel with _$YouTubeVideoModel {
