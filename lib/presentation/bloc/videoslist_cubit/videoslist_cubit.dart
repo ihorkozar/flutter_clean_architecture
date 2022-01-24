@@ -1,6 +1,5 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter_clean_architecture/data/models/video/youtube_video_model.dart';
-import 'package:flutter_clean_architecture/domain/use_cases/get_playlist.dart';
 import 'package:flutter_clean_architecture/domain/use_cases/get_videolist.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/videoslist_cubit/videoslist_state.dart';
 import 'package:flutter_clean_architecture/util/constants.dart';

@@ -15,7 +15,7 @@ dependencies:
   cupertino_icons: ^1.0.4
   equatable: ^2.0.3
   dartz: ^0.10.1
-  flutter_bloc: ^7.3.3
+  flutter_bloc: ^8.0.1
   #Network
   http: ^0.13.4
   universal_internet_checker: ^0.1.2
@@ -31,6 +31,7 @@ dependencies:
   freezed_annotation: ^1.1.0
   json_annotation: ^4.4.0
   fl_chart: ^0.41.0
+  youtube_player_iframe: ^2.2.2
 
 
 dev_dependencies:

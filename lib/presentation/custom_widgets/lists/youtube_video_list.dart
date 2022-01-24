@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/data/models/video/youtube_video_model.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/videoslist_cubit/videoslist_cubit.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/videoslist_cubit/videoslist_state.dart';
+import 'package:flutter_clean_architecture/presentation/custom_widgets/cards/video_card.dart';
 
 class YouTubeVideoList extends StatelessWidget {
   final scrollController = ScrollController();
@@ -51,7 +52,10 @@ class YouTubeVideoList extends StatelessWidget {
           if (index < videos.length) {
             return Padding(
               padding: const EdgeInsets.all(8),
-              child: Text(videos[index].kind),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: VideoCard(videos: videos, index: index),
+              ),//Text(videos[index].snippet.title),
             );
           } else {
             Timer(const Duration(milliseconds: 30), () {

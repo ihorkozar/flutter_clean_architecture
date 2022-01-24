@@ -6,29 +6,28 @@ part 'youtube_video_model.freezed.dart';
 
 part 'youtube_video_model.g.dart';
 
+// @freezed
+// class YouTubeVideoModel with _$YouTubeVideoModel {
+//   const factory YouTubeVideoModel({
+//     required String kind,
+//     required String etag,
+//     //required List<Item> items,
+//   }) = _YouTubeVideoModel;
+//
+//   factory YouTubeVideoModel.fromJson(Map<String, dynamic> json) =>
+//       _$YouTubeVideoModelFromJson(json);
+// }
+
 @freezed
 class YouTubeVideoModel with _$YouTubeVideoModel {
-  @JsonSerializable(explicitToJson: true)
   const factory YouTubeVideoModel({
-    required String kind,
-    required String etag,
-    required List<Item> items,
-  }) = _YouTubeVideoModel;
-
-  factory YouTubeVideoModel.fromJson(Map<String, dynamic> json) =>
-      _$YouTubeVideoModelFromJson(json);
-}
-
-@freezed
-class Item with _$Item {
-  const factory Item({
     required String kind,
     required String etag,
     required String id,
     required Snippet snippet,
-  }) = _Item;
+  }) = _YouTubeVideoModel;
 
-  factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
+  factory YouTubeVideoModel.fromJson(Map<String, dynamic> json) => _$YouTubeVideoModelFromJson(json);
 }
 
 
@@ -39,7 +38,7 @@ class Snippet with _$Snippet {
     required String channelId,
     required String title,
     required String description,
-    //required Thumbnails thumbnails,
+    required Thumbnails thumbnails,
     required String channelTitle,
     required String playlistId,
     required ResourceId resourceId,
@@ -60,28 +59,28 @@ class ResourceId with _$ResourceId {
       _$ResourceIdFromJson(json);
 }
 
-// @freezed
-// class Thumbnails with _$Thumbnails {
-//   const factory Thumbnails({
-//     Default? thumbnailsDefault,
-//     Default? medium,
-//     Default? high,
-//     Default? standard,
-//     Default? maxres,
-//   }) = _Thumbnails;
-//
-//   factory Thumbnails.fromJson(Map<String, dynamic> json) =>
-//       _$ThumbnailsFromJson(json);
-// }
-//
-// @freezed
-// class Default with _$Default {
-//   const factory Default({
-//     required String url,
-//     required int width,
-//     required int height,
-//   }) = _Default;
-//
-//   factory Default.fromJson(Map<String, dynamic> json) =>
-//       _$DefaultFromJson(json);
-// }
+@freezed
+class Thumbnails with _$Thumbnails {
+  const factory Thumbnails({
+    Default? thumbnailsDefault,
+    Default? medium,
+    Default? high,
+    Default? standard,
+    Default? maxres,
+  }) = _Thumbnails;
+
+  factory Thumbnails.fromJson(Map<String, dynamic> json) =>
+      _$ThumbnailsFromJson(json);
+}
+
+@freezed
+class Default with _$Default {
+  const factory Default({
+    required String url,
+    required int width,
+    required int height,
+  }) = _Default;
+
+  factory Default.fromJson(Map<String, dynamic> json) =>
+      _$DefaultFromJson(json);
+}

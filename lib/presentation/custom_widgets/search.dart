@@ -126,7 +126,7 @@ class CustomSearchDelegate extends SearchDelegate {
   }
 
   int getRand(){
-    return Random().nextInt(4);
+    return Random().nextInt(5);
   }
 
   @override

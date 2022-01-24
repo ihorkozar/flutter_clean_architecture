@@ -1,10 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_clean_architecture/data/models/person/person_model.dart';
 import 'package:flutter_clean_architecture/data/models/playlist/playlist_model.dart';
 import 'package:flutter_clean_architecture/data/models/video/youtube_video_model.dart';
-import 'package:flutter_clean_architecture/data/sources/local_source.dart';
 import 'package:flutter_clean_architecture/data/sources/remote_source.dart';
-import 'package:flutter_clean_architecture/domain/repository/person_repository.dart';
 import 'package:flutter_clean_architecture/domain/repository/playlist_repository.dart';
 import 'package:flutter_clean_architecture/util/connection_info.dart';
 import 'package:flutter_clean_architecture/util/exeptions.dart';
