@@ -24,7 +24,7 @@ class PersonCard extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              PersonCacheImage(
+              CacheImage(
                 width: 166,
                 height: 166,
                 imageUrl: person.image,

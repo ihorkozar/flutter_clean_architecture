@@ -3,8 +3,8 @@ import 'package:flutter_clean_architecture/presentation/custom_widgets/custom_dr
 import 'package:flutter_clean_architecture/presentation/custom_widgets/lists/persons_list.dart';
 import 'package:flutter_clean_architecture/presentation/custom_widgets/search.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class OverviewScreen extends StatelessWidget {
+  const OverviewScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
             onPressed: () {
               showSearch(context: context, delegate: CustomSearchDelegate());
             },
-          )
+          ),
         ],
       ),
       drawer: const CustomDrawer(),

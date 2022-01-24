@@ -49,8 +49,8 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   Future<List<PlaylistModel>> getPlaylists() async {
     final response = await client.get(
         Uri.parse(
-            '${youtubeBaseUrl}playlists?part=snippet&channelId=UCwXdFgeE9KYzlDdR7TG9cMw&key=${Constants.youtubeApiKey}'),
-        headers: {'Content-Type': 'application/json'});
+            '${youtubeBaseUrl}playlists?part=snippet&channelId=UCwXdFgeE9KYzlDdR7TG9cMw&key=${Constants.youtubeApiKey}',),
+        headers: {'Content-Type': 'application/json'},);
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);
       print(jsonResponse);
@@ -67,8 +67,8 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   Future<List<YouTubeVideoModel>> getVideos(String id) async{
     final response = await client.get(
         Uri.parse(
-            '${youtubeBaseUrl}playlistItems?part=snippet&key=${Constants.youtubeApiKey}&maxResults=50&playlistId=$id'),
-        headers: {'Content-Type': 'application/json'});
+            '${youtubeBaseUrl}playlistItems?part=snippet&key=${Constants.youtubeApiKey}&maxResults=50&playlistId=$id',),
+        headers: {'Content-Type': 'application/json'},);
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);
       print(jsonResponse);

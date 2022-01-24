@@ -1,22 +1,22 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-class PersonCacheImage extends StatelessWidget {
+class CacheImage extends StatelessWidget {
   final String imageUrl;
   final double? width, height;
 
-  const PersonCacheImage(
+  const CacheImage(
       {Key? key,
       required this.imageUrl,
       this.width,
-      this.height})
+      this.height,})
       : super(key: key);
 
   Widget _imageWidget(ImageProvider imageProvider) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(8), bottomLeft: Radius.circular(8)),
+            topLeft: Radius.circular(8), bottomLeft: Radius.circular(8),),
         image: DecorationImage(
           image: imageProvider,
           fit: BoxFit.cover,

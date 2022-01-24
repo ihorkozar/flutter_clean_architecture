@@ -55,13 +55,13 @@ class PlayList extends StatelessWidget {
                     .push(VideosScreen(playlist: playlists[index])),
                 child: Padding(
                   padding: const EdgeInsets.all(8),
-                  child: PersonCacheImage(
+                  child: CacheImage(
                     imageUrl: playlists[index].snippet.thumbnails.high?.url ??
                         'https://www.youtube.com/img/desktop/yt_1200.png',
                     width: 100,
                     height: 200,
                   ),
-                )); //Center(child: Text(playlists[index].snippet.title) ,);
+                ),); //Center(child: Text(playlists[index].snippet.title) ,);
           } else {
             Timer(const Duration(milliseconds: 30), () {
               scrollController

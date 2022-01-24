@@ -32,7 +32,7 @@ class PersonDetailPage extends StatelessWidget {
             const SizedBox(
               height: 12,
             ),
-            PersonCacheImage(
+            CacheImage(
               width: 260,
               height: 260,
               imageUrl: person.image,

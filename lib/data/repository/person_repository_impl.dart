@@ -33,7 +33,7 @@ class PersonRepositoryImpl implements PersonRepository {
   }
 
   Future<Either<Failure, List<PersonModel>>> _getPersons(
-      Future<List<PersonModel>> Function() getPersons) async {
+      Future<List<PersonModel>> Function() getPersons,) async {
     if (await connectionInfo.isConnected) {
       try {
         final remotePerson = await getPersons();
