@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart'
 ;
 import 'package:flutter_clean_architecture/data/models/video/youtube_video_model.dart';
+import 'package:flutter_clean_architecture/presentation/screens/detail_video_screen.dart';
 
 import 'cache_image.dart';
 class VideoCard extends StatelessWidget {

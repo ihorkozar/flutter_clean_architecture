@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_clean_architecture/samples/youtube/meta_data.dart';
 import 'package:flutter_clean_architecture/samples/youtube/play_pause.dart';
 import 'package:flutter_clean_architecture/samples/youtube/play_state.dart';
 import 'package:flutter_clean_architecture/samples/youtube/source_input.dart';
@@ -10,8 +11,8 @@ import 'package:flutter_clean_architecture/samples/youtube/volume_slider.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
 class DetailVideoScreen extends StatefulWidget {
-  final String videoId;
-  const DetailVideoScreen({Key? key, required this.videoId}) : super(key: key);
+  final List<String> videoIdList;
+  const DetailVideoScreen({Key? key, required this.videoIdList}) : super(key: key);
 
   @override
   _DetailVideoScreenState createState() => _DetailVideoScreenState();
@@ -24,8 +25,9 @@ class _DetailVideoScreenState extends State<DetailVideoScreen> {
   void initState() {
     super.initState();
     _controller = YoutubePlayerController(
-      initialVideoId: widget.videoId,
-      params: const YoutubePlayerParams(
+      initialVideoId: widget.videoIdList.first,
+      params: YoutubePlayerParams(
+        playlist: widget.videoIdList,
         startAt: Duration(minutes: 1, seconds: 36),
         showControls: true,
         showFullscreenButton: true,
@@ -125,10 +127,9 @@ class _DetailVideoScreenState extends State<DetailVideoScreen> {
   }
 }
 
-///
 class Controls extends StatelessWidget {
-  ///
-  const Controls();
+
+  const Controls({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -137,6 +138,8 @@ class Controls extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          _space,
+          MetaDataSection(),
           _space,
           SourceInputSection(),
           _space,

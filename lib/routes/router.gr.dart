@@ -69,7 +69,8 @@ class AppRouter extends _i9.RootStackRouter {
       final args = routeData.argsAs<DetailVideoScreenArgs>();
       return _i9.MaterialPageX<dynamic>(
           routeData: routeData,
-          child: _i8.DetailVideoScreen(key: args.key, url: args.url));
+          child: _i8.DetailVideoScreen(
+              key: args.key, videoIdList: args.videoIdList));
     }
   };
 
@@ -195,23 +196,23 @@ class YoutubeVideoSample extends _i9.PageRouteInfo<void> {
 /// generated route for
 /// [_i8.DetailVideoScreen]
 class DetailVideoScreen extends _i9.PageRouteInfo<DetailVideoScreenArgs> {
-  DetailVideoScreen({_i10.Key? key, required String url})
+  DetailVideoScreen({_i10.Key? key, required List<String> videoIdList})
       : super(DetailVideoScreen.name,
             path: 'videoDetail',
-            args: DetailVideoScreenArgs(key: key, url: url));
+            args: DetailVideoScreenArgs(key: key, videoIdList: videoIdList));
 
   static const String name = 'DetailVideoScreen';
 }
 
 class DetailVideoScreenArgs {
-  const DetailVideoScreenArgs({this.key, required this.url});
+  const DetailVideoScreenArgs({this.key, required this.videoIdList});
 
   final _i10.Key? key;
 
-  final String url;
+  final List<String> videoIdList;
 
   @override
   String toString() {
-    return 'DetailVideoScreenArgs{key: $key, url: $url}';
+    return 'DetailVideoScreenArgs{key: $key, videoIdList: $videoIdList}';
   }
 }

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
-///
 class PlayPauseButtonBar extends StatelessWidget {
   final ValueNotifier<bool> _isMuted = ValueNotifier(false);
+
+  PlayPauseButtonBar({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Row(

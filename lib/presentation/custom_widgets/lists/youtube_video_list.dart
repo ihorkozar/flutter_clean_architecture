@@ -1,13 +1,11 @@
 import 'dart:async';
-
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/data/models/video/youtube_video_model.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/videoslist_cubit/videoslist_cubit.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/videoslist_cubit/videoslist_state.dart';
 import 'package:flutter_clean_architecture/presentation/custom_widgets/cards/video_card.dart';
-import 'package:flutter_clean_architecture/routes/router.gr.dart';
+import 'package:flutter_clean_architecture/presentation/screens/detail_video_screen.dart';
 
 class YouTubeVideoList extends StatelessWidget {
   final scrollController = ScrollController();
@@ -33,13 +31,12 @@ class YouTubeVideoList extends StatelessWidget {
     return BlocBuilder<VideoListCubit, VideoListState>(
         builder: (context, state) {
           List<YouTubeVideoModel> videos = [];
-          bool isLoading = false;
+          List<String> videoIdList = [];
 
           if (state is VideoListLoading && state.isFirstFetch) {
             return _loadingIndicator();
           } else if (state is VideoListLoading) {
             videos = state.oldVideoList;
-            isLoading = true;
           } else if (state is VideoListLoaded) {
             videos = state.videoList;
           } else if (state is VideoListError) {
@@ -50,37 +47,12 @@ class YouTubeVideoList extends StatelessWidget {
               ),
             );
           }
-          return ListView.separated(
-            controller: scrollController,
-            itemBuilder: (context, index) {
-              if (index < videos.length) {
-                return GestureDetector(
-                  onTap: () {
-                    print(videos[index].snippet.resourceId.videoId);
-                    //AutoRouter.of(context).push(DetailVideoScreen(videoId: videos[index].snippet.resourceId.videoId));
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: VideoCard(video: videos[index]),
-                  ),
-                );
-              } else {
-                Timer(const Duration(milliseconds: 30), () {
-                  scrollController
-                      .jumpTo(scrollController.position.maxScrollExtent);
-                });
-                return _loadingIndicator();
-              }
-            },
-            separatorBuilder: (context, index) {
-              return Divider(
-                endIndent: 8,
-                indent: 8,
-                color: Colors.grey[400],
-              );
-            },
-            itemCount: videos.length + (isLoading ? 1 : 0),
-          );
+
+          videos.forEach((element) {
+            videoIdList.add(element.snippet.resourceId.videoId);
+          });
+
+          return DetailVideoScreen(videoIdList: videoIdList);
         });
   }
 

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
-///
 class VolumeSlider extends StatelessWidget {
   final _volume = ValueNotifier<int>(100);
+
+  VolumeSlider({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
