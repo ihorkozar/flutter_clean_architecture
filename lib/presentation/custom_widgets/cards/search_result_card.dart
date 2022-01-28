@@ -25,7 +25,7 @@ class SearchResultCard extends StatelessWidget {
             SizedBox(
               height: 300,
               width: double.infinity,
-              child: PersonCacheImage(
+              child: CacheImage(
                 imageUrl: personResult.image,
               ),
             ),

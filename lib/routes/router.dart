@@ -1,4 +1,5 @@
 import 'package:auto_route/annotations.dart';
+import 'package:flutter_clean_architecture/presentation/screens/auth_screen.dart';
 import 'package:flutter_clean_architecture/presentation/screens/rm/detail_screen.dart';
 import 'package:flutter_clean_architecture/presentation/custom_widgets/video_view.dart';
 import 'package:flutter_clean_architecture/presentation/screens/rm/overview_screen.dart';
@@ -16,7 +17,7 @@ import 'package:flutter_clean_architecture/samples/youtube/youtube_video_sample.
     AutoRoute(page: PersonDetailPage, path: RouteConstants.detail),
     AutoRoute(page: PlaylistsPage, path: RouteConstants.playlists),
     AutoRoute(page: VideosScreen, path: RouteConstants.videos),
-    AutoRoute(page: YoutubeVideoSample, path: RouteConstants.sample),
+    AutoRoute(page: AuthScreen, path: RouteConstants.sample),
     AutoRoute(page: VideoView, path: RouteConstants.videoDetail),
   ],
 )

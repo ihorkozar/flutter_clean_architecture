@@ -16,12 +16,12 @@ import 'package:flutter/material.dart' as _i9;
 import '../data/models/person/person_model.dart' as _i10;
 import '../data/models/playlist/playlist_model.dart' as _i11;
 import '../presentation/custom_widgets/video_view.dart' as _i7;
+import '../presentation/screens/auth_screen.dart' as _i6;
 import '../presentation/screens/playlists_screen.dart' as _i4;
 import '../presentation/screens/rm/detail_screen.dart' as _i3;
 import '../presentation/screens/rm/overview_screen.dart' as _i2;
 import '../presentation/screens/splash_screen.dart' as _i1;
 import '../presentation/screens/videos_screen.dart' as _i5;
-import '../samples/youtube/youtube_video_sample.dart' as _i6;
 
 class AppRouter extends _i8.RootStackRouter {
   AppRouter([_i9.GlobalKey<_i9.NavigatorState>? navigatorKey])
@@ -53,9 +53,9 @@ class AppRouter extends _i8.RootStackRouter {
           routeData: routeData,
           child: _i5.VideosScreen(key: args.key, playlist: args.playlist));
     },
-    YoutubeVideoSample.name: (routeData) {
+    AuthScreen.name: (routeData) {
       return _i8.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i6.YoutubeVideoSample());
+          routeData: routeData, child: const _i6.AuthScreen());
     },
     VideoView.name: (routeData) {
       final args = routeData.argsAs<VideoViewArgs>();
@@ -74,7 +74,7 @@ class AppRouter extends _i8.RootStackRouter {
         _i8.RouteConfig(PersonDetailRoute.name, path: 'detail'),
         _i8.RouteConfig(PlaylistsRoute.name, path: 'playlists'),
         _i8.RouteConfig(VideosScreen.name, path: 'videos'),
-        _i8.RouteConfig(YoutubeVideoSample.name, path: 'sample'),
+        _i8.RouteConfig(AuthScreen.name, path: 'sample'),
         _i8.RouteConfig(VideoView.name, path: 'videoDetail')
       ];
 }
@@ -152,11 +152,11 @@ class VideosScreenArgs {
 }
 
 /// generated route for
-/// [_i6.YoutubeVideoSample]
-class YoutubeVideoSample extends _i8.PageRouteInfo<void> {
-  const YoutubeVideoSample() : super(YoutubeVideoSample.name, path: 'sample');
+/// [_i6.AuthScreen]
+class AuthScreen extends _i8.PageRouteInfo<void> {
+  const AuthScreen() : super(AuthScreen.name, path: 'sample');
 
-  static const String name = 'YoutubeVideoSample';
+  static const String name = 'AuthScreen';
 }
 
 /// generated route for

@@ -55,7 +55,7 @@ class PlayList extends StatelessWidget {
                     .push(VideosScreen(playlist: playlists[index])),
                 child: Padding(
                   padding: const EdgeInsets.all(8),
-                  child: PersonCacheImage(
+                  child: CacheImage(
                     imageUrl: playlists[index].snippet.thumbnails.high?.url ??
                         'https://www.youtube.com/img/desktop/yt_1200.png',
                     width: 100,
