@@ -61,7 +61,7 @@ class PlayList extends StatelessWidget {
                     width: 100,
                     height: 200,
                   ),
-                )); //Center(child: Text(playlists[index].snippet.title) ,);
+                ),); //Center(child: Text(playlists[index].snippet.title) ,);
           } else {
             Timer(const Duration(milliseconds: 30), () {
               scrollController

@@ -12,6 +12,8 @@ import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 import 'meta_data.dart';
 
 class YoutubeVideoSample extends StatelessWidget {
+  const YoutubeVideoSample({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,13 +24,14 @@ class YoutubeVideoSample extends StatelessWidget {
         scaffoldBackgroundColor: Colors.black,
       ),
       debugShowCheckedModeBanner: false,
-      home: YoutubeAppDemo(),
+      home: const YoutubeAppDemo(),
     );
   }
 }
 
-///
 class YoutubeAppDemo extends StatefulWidget {
+  const YoutubeAppDemo({Key? key}) : super(key: key);
+
   @override
   _YoutubeAppDemoState createState() => _YoutubeAppDemoState();
 }
@@ -52,7 +55,7 @@ class _YoutubeAppDemoState extends State<YoutubeAppDemo> {
           'xSDLSPodzUo',
           'xSDLSPodzUo',
         ],
-        startAt: const Duration(minutes: 1, seconds: 36),
+        startAt: Duration(minutes: 1, seconds: 36),
         showControls: true,
         showFullscreenButton: true,
         desktopMode: false,
@@ -84,9 +87,9 @@ class _YoutubeAppDemoState extends State<YoutubeAppDemo> {
             if (kIsWeb && constraints.maxWidth > 800) {
               return Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Expanded(child: player),
-                  const SizedBox(
+                children: const [
+                  Expanded(child: player),
+                  SizedBox(
                     width: 500,
                     child: SingleChildScrollView(
                       child: Controls(),
@@ -151,10 +154,9 @@ class _YoutubeAppDemoState extends State<YoutubeAppDemo> {
   }
 }
 
-///
 class Controls extends StatelessWidget {
-  ///
-  const Controls();
+
+  const Controls({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -164,15 +166,15 @@ class Controls extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _space,
-          MetaDataSection(),
+          const MetaDataSection(),
           _space,
-          SourceInputSection(),
+          const SourceInputSection(),
           _space,
           PlayPauseButtonBar(),
           _space,
           VolumeSlider(),
           _space,
-          PlayerStateSection(),
+          const PlayerStateSection(),
         ],
       ),
     );

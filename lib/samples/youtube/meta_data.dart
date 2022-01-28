@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
-///
 class MetaDataSection extends StatelessWidget {
+  const MetaDataSection({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return YoutubeValueBuilder(

@@ -1,11 +1,9 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/data/models/video/youtube_video_model.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/videoslist_cubit/videoslist_cubit.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/videoslist_cubit/videoslist_state.dart';
-import 'package:flutter_clean_architecture/presentation/custom_widgets/cards/video_card.dart';
-import 'package:flutter_clean_architecture/presentation/screens/detail_video_screen.dart';
+import 'package:flutter_clean_architecture/presentation/custom_widgets/video_view.dart';
 
 class YouTubeVideoList extends StatelessWidget {
   final scrollController = ScrollController();
@@ -52,8 +50,8 @@ class YouTubeVideoList extends StatelessWidget {
             videoIdList.add(element.snippet.resourceId.videoId);
           });
 
-          return DetailVideoScreen(videoIdList: videoIdList);
-        });
+          return VideoView(videoIdList: videoIdList);
+        },);
   }
 
   Widget _loadingIndicator() {

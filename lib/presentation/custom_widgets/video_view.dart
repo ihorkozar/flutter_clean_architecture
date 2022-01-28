@@ -5,20 +5,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_clean_architecture/samples/youtube/meta_data.dart';
 import 'package:flutter_clean_architecture/samples/youtube/play_pause.dart';
-import 'package:flutter_clean_architecture/samples/youtube/play_state.dart';
 import 'package:flutter_clean_architecture/samples/youtube/source_input.dart';
 import 'package:flutter_clean_architecture/samples/youtube/volume_slider.dart';
 import 'package:youtube_player_iframe/youtube_player_iframe.dart';
 
-class DetailVideoScreen extends StatefulWidget {
+class VideoView extends StatefulWidget {
   final List<String> videoIdList;
-  const DetailVideoScreen({Key? key, required this.videoIdList}) : super(key: key);
+  const VideoView({Key? key, required this.videoIdList}) : super(key: key);
 
   @override
-  _DetailVideoScreenState createState() => _DetailVideoScreenState();
+  _VideoViewState createState() => _VideoViewState();
 }
 
-class _DetailVideoScreenState extends State<DetailVideoScreen> {
+class _VideoViewState extends State<VideoView> {
   late YoutubePlayerController _controller;
 
   @override
@@ -28,7 +27,7 @@ class _DetailVideoScreenState extends State<DetailVideoScreen> {
       initialVideoId: widget.videoIdList.first,
       params: YoutubePlayerParams(
         playlist: widget.videoIdList,
-        startAt: Duration(minutes: 1, seconds: 36),
+        startAt: const Duration(minutes: 1, seconds: 36),
         showControls: true,
         showFullscreenButton: true,
         desktopMode: false,
@@ -139,9 +138,9 @@ class Controls extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _space,
-          MetaDataSection(),
+          const MetaDataSection(),
           _space,
-          SourceInputSection(),
+          const SourceInputSection(),
           _space,
           PlayPauseButtonBar(),
           _space,

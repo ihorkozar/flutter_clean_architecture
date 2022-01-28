@@ -16,6 +16,10 @@ linter:
 analyzer:
   plugins:
     - dart_code_metrics
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - lib/routes/router.gr.dart
 
 dart_code_metrics:
   anti-patterns:

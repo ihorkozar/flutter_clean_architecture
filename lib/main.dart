@@ -6,8 +6,8 @@ import 'package:flutter_clean_architecture/presentation/bloc/search_bloc/search_
 import 'package:flutter_clean_architecture/presentation/bloc/videoslist_cubit/videoslist_cubit.dart';
 import 'package:flutter_clean_architecture/routes/router.gr.dart';
 import 'package:flutter_clean_architecture/util/app_style.dart';
-import 'package:flutter_clean_architecture/util/service_locator.dart' as sl;
-import 'package:flutter_clean_architecture/util/service_locator.dart';
+import 'package:flutter_clean_architecture/sl/service_locator.dart' as sl;
+import 'package:flutter_clean_architecture/sl/service_locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<VideoListCubit>(
           create: (context) => serviceLocator<VideoListCubit>()..loadVideoList('PLjxrf2q8roU0c3fPxw_74FQ6mTYknkhkd'),
-        )
+        ),
       ],
       child: MaterialApp.router(
         routerDelegate: _appRouter.delegate(),

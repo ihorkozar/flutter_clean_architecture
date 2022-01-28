@@ -25,7 +25,7 @@ class PersonSearchBloc extends Bloc<PersonSearchEvent, PersonSearchState> {
 
     emit(failureOrPerson.fold(
         (failure) => PersonSearchError(message: _mapFailureToMessage(failure)),
-        (person) => PersonSearchLoaded(persons: person)));
+        (person) => PersonSearchLoaded(persons: person),));
   }
 
   String _mapFailureToMessage(Failure failure) {

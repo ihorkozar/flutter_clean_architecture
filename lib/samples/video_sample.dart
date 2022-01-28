@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_clean_architecture/presentation/screens/detail_video_screen.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoSample extends StatelessWidget {
+  const VideoSample({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -23,7 +24,7 @@ class VideoSample extends StatelessWidget {
                   ),
                 );
               },
-            )
+            ),
           ],
           bottom: const TabBar(
             isScrollable: true,
@@ -54,30 +55,31 @@ class _ButterFlyAssetVideoInList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: <Widget>[
-        _ExampleCard(title: "Item a"),
-        _ExampleCard(title: "Item b"),
-        _ExampleCard(title: "Item c"),
+        const _ExampleCard(title: "Item a"),
+        const _ExampleCard(title: "Item b"),
+        const _ExampleCard(title: "Item c"),
         Card(
-            child: Column(children: <Widget>[
-              Column(
-                children: <Widget>[
-                  const ListTile(
-                    leading: Icon(Icons.cake),
-                    title: Text("Video video"),
-                  ),
-                  _BumbleBeeRemoteVideo(),
-                  // Stack(
-                  //     alignment: FractionalOffset.bottomRight +
-                  //         const FractionalOffset(-0.1, -0.1),
-                  //     children: <Widget>[
-                  //       ,
-                  //       Image.asset('assets/images/noimage.png'),
-                  //     ]),
-                ],
-              ),
-            ])),
-        _ExampleCard(title: "Item h"),
-        _ExampleCard(title: "Item i"),
+          child: Column(children: <Widget>[
+            Column(
+              children: <Widget>[
+                const ListTile(
+                  leading: Icon(Icons.cake),
+                  title: Text("Video video"),
+                ),
+                _BumbleBeeRemoteVideo(),
+                // Stack(
+                //     alignment: FractionalOffset.bottomRight +
+                //         const FractionalOffset(-0.1, -0.1),
+                //     children: <Widget>[
+                //       ,
+                //       Image.asset('assets/images/noimage.png'),
+                //     ]),
+              ],
+            ),
+          ]),
+        ),
+        const _ExampleCard(title: "Item h"),
+        const _ExampleCard(title: "Item i"),
       ],
     );
   }
@@ -200,21 +202,21 @@ class _ControlsOverlay extends StatelessWidget {
     return Stack(
       children: <Widget>[
         AnimatedSwitcher(
-          duration: Duration(milliseconds: 50),
-          reverseDuration: Duration(milliseconds: 200),
+          duration: const Duration(milliseconds: 50),
+          reverseDuration: const Duration(milliseconds: 200),
           child: controller.value.isPlaying
-              ? SizedBox.shrink()
+              ? const SizedBox.shrink()
               : Container(
-            color: Colors.black26,
-            child: Center(
-              child: Icon(
-                Icons.play_arrow,
-                color: Colors.white,
-                size: 100.0,
-                semanticLabel: 'Play',
-              ),
-            ),
-          ),
+                  color: Colors.black26,
+                  child: const Center(
+                    child: Icon(
+                      Icons.play_arrow,
+                      color: Colors.white,
+                      size: 100.0,
+                      semanticLabel: 'Play',
+                    ),
+                  ),
+                ),
         ),
         GestureDetector(
           onTap: () {
@@ -235,7 +237,7 @@ class _ControlsOverlay extends StatelessWidget {
                   PopupMenuItem(
                     value: speed,
                     child: Text('${speed}x'),
-                  )
+                  ),
               ];
             },
             child: Padding(
@@ -298,14 +300,11 @@ class _PlayerVideoAndPopPageState extends State<_PlayerVideoAndPopPage> {
         child: FutureBuilder<bool>(
           future: started(),
           builder: (BuildContext context, AsyncSnapshot<bool> snapshot) {
-            if (snapshot.data == true) {
-              return AspectRatio(
-                aspectRatio: _videoPlayerController.value.aspectRatio,
-                child: VideoPlayer(_videoPlayerController),
-              );
-            } else {
-              return const Text('waiting for video to load');
-            }
+            return snapshot.data == true
+                ? AspectRatio(
+                    aspectRatio: _videoPlayerController.value.aspectRatio,
+                    child: VideoPlayer(_videoPlayerController),)
+                : const Text('waiting for video to load');
           },
         ),
       ),

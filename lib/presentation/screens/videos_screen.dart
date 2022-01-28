@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/data/models/playlist/playlist_model.dart';
 import 'package:flutter_clean_architecture/presentation/custom_widgets/lists/youtube_video_list.dart';
 
-import 'detail_video_screen.dart';
-
 class VideosScreen extends StatefulWidget {
   final PlaylistModel playlist;
 

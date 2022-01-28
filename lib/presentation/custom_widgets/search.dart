@@ -25,7 +25,7 @@ class CustomSearchDelegate extends SearchDelegate {
           onPressed: () {
             query = '';
             showSuggestions(context);
-          })
+          },),
     ];
   }
 
@@ -34,7 +34,7 @@ class CustomSearchDelegate extends SearchDelegate {
     return IconButton(
         icon: const Icon(Icons.arrow_back_outlined),
         tooltip: 'Back',
-        onPressed: () => close(context, null));
+        onPressed: () => close(context, null),);
   }
 
   @override

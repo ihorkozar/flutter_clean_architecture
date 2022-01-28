@@ -28,12 +28,12 @@ class CustomDrawer extends StatelessWidget {
                       fontWeight: FontWeight.w700,
                     ),
                     textAlign: TextAlign.center,
-                  )),
+                  ),),
             ),
             ListTile(
               title: const Text('Characters'),
               onTap: () {
-                AutoRouter.of(context).pushNamed(RouteConstants.home);
+                AutoRouter.of(context).pushNamed(RouteConstants.overview);
               },
             ),
             Divider(
