@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/ihorkozar/flutter_clean_architecture/issues"
   },
-  "homepage": "https://github.com/ihorkozar/flutter_clean_architecture#readme"
+  "homepage": "https://github.com/ihorkozar/flutter_clean_architecture#readme",
+  "dependencies": {
+    "firebase": "^9.6.5"
+  }
 }

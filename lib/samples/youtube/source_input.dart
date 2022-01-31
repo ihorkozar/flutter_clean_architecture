@@ -191,8 +191,9 @@ class _PlaylistTypeDropDownState extends State<_PlaylistTypeDropDown> {
       )
           .toList(),
       onChanged: (value) {
-        _playlistType = value;
-        setState(() {});
+        setState(() {
+          _playlistType = value;
+        });
         if (value != null) widget.onChanged(value);
       },
     );

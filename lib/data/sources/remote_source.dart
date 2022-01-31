@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_clean_architecture/data/models/person/person_model.dart';
 import 'package:flutter_clean_architecture/data/models/playlist/playlist_model.dart';
 import 'package:flutter_clean_architecture/data/models/video/youtube_video_model.dart';
@@ -53,12 +54,12 @@ class RemoteDataSourceImpl extends RemoteDataSource {
         headers: {'Content-Type': 'application/json'},);
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);
-      print(jsonResponse);
+      debugPrint(jsonResponse);
       return (jsonResponse['items'] as List)
           .map((e) => PlaylistModel.fromJson(e))
           .toList();
     } else {
-      print(response.statusCode);
+      debugPrint(response.statusCode.toString());
       throw ServerException();
     }
   }
@@ -71,12 +72,12 @@ class RemoteDataSourceImpl extends RemoteDataSource {
         headers: {'Content-Type': 'application/json'},);
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);
-      print(jsonResponse);
+      debugPrint(jsonResponse);
       return (jsonResponse['items'] as List)
           .map((e) => YouTubeVideoModel.fromJson(e))
           .toList();
     } else {
-      print(response.statusCode);
+      debugPrint(response.statusCode.toString());
       throw ServerException();
     }
   }

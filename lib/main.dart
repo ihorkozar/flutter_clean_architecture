@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/list_cubit/list_cubit.dart';
@@ -11,6 +12,16 @@ import 'package:flutter_clean_architecture/sl/service_locator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: const FirebaseOptions(
+        apiKey: "AIzaSyBH95muX8oq2rCwtNFNLwwcR9UIpWU8E4Y",
+        authDomain: "rm-web-38e46.firebaseapp.com",
+        projectId: "rm-web-38e46",
+        storageBucket: "rm-web-38e46.appspot.com",
+        messagingSenderId: "548690571277",
+        appId: "1:548690571277:web:bd5573cea158e890556544",
+    ),
+  );
   await sl.init();
   runApp(const MyApp());
 }

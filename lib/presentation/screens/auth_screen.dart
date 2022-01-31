@@ -1,72 +1,99 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_clean_architecture/presentation/custom_widgets/auth/auth_tabbar.dart';
+import 'package:flutter_clean_architecture/presentation/custom_widgets/auth/student_auth.dart';
+import 'package:flutter_clean_architecture/presentation/custom_widgets/auth/teacher_auth.dart';
 import 'package:flutter_clean_architecture/util/responcive.dart';
 
-class AuthScreen extends StatefulWidget {
+class AuthScreen extends StatelessWidget {
   const AuthScreen({Key? key}) : super(key: key);
 
   @override
-  State<AuthScreen> createState() => _AuthScreenState();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          child: Responsive.isMobile(context)
+              ? Column(
+                  children: [
+                    Center(
+                      child: FlutterLogo(
+                        size: 300,
+                      ),
+                    ),
+                    Expanded(
+                      child: AuthFormWidget(),
+                    ),
+                  ],
+                )
+              : SizedBox(
+                  width: 800,
+                  child: Row(
+                    children: const [
+                      Center(
+                        child: FlutterLogo(
+                          size: 300,
+                        ),
+                      ),
+                      Expanded(child: AuthFormWidget()),
+                    ],
+                  ),
+                ),
+        ),
+      ),
+    );
+  }
 }
 
-class _AuthScreenState extends State<AuthScreen>
+class AuthFormWidget extends StatefulWidget {
+  const AuthFormWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<AuthFormWidget> createState() => _AuthFormWidgetState();
+}
+
+class _AuthFormWidgetState extends State<AuthFormWidget>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
-    _tabController = new TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 2, vsync: this);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(child: Responsive.isMobile(context) ? Column(children: [],) : Row()
-          //NewWidget(tabController: _tabController),
+    return NestedScrollView(
+      controller: _scrollController,
+      headerSliverBuilder: (context, value) {
+        return [
+          SliverToBoxAdapter(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                AuthTabBar(tabController: _tabController),
+              ],
+            ),
           ),
+        ];
+      },
+      body: TabBarView(
+        children: const [
+          TeacherAuth(),
+          StudentAuth(),
+        ],
+        controller: _tabController,
+      ),
     );
   }
-}
-
-class NewWidget extends StatelessWidget {
-  const NewWidget({
-    Key? key,
-    required TabController tabController,
-  })  : _tabController = tabController,
-        super(key: key);
-
-  final TabController _tabController;
 
   @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        TabBar(
-          unselectedLabelColor: Colors.black,
-          labelColor: Colors.red,
-          tabs: [
-            Tab(
-              text: '1st tab',
-            ),
-            Tab(
-              text: '2 nd tab',
-            )
-          ],
-          controller: _tabController,
-          indicatorSize: TabBarIndicatorSize.tab,
-        ),
-        Expanded(
-          child: TabBarView(
-            children: [
-              Container(child: Center(child: Text('people'))),
-              Text('Person')
-            ],
-            controller: _tabController,
-          ),
-        ),
-      ],
-    );
+  void dispose() {
+    _tabController.dispose();
+    _scrollController.dispose();
+    super.dispose();
   }
 }

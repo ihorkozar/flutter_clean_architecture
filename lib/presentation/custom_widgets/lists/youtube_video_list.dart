@@ -46,9 +46,9 @@ class YouTubeVideoList extends StatelessWidget {
             );
           }
 
-          videos.forEach((element) {
+          for (var element in videos) {
             videoIdList.add(element.snippet.resourceId.videoId);
-          });
+          }
 
           return VideoView(videoIdList: videoIdList);
         },);

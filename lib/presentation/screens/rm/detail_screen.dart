@@ -3,10 +3,10 @@ import 'package:flutter_clean_architecture/data/models/person/person_model.dart'
 import 'package:flutter_clean_architecture/presentation/custom_widgets/cards/cache_image.dart';
 import 'package:flutter_clean_architecture/util/app_style.dart';
 
-class PersonDetailPage extends StatelessWidget {
+class PersonDetailScreen extends StatelessWidget {
   final PersonModel person;
 
-  const PersonDetailPage({Key? key, required this.person}) : super(key: key);
+  const PersonDetailScreen({Key? key, required this.person}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

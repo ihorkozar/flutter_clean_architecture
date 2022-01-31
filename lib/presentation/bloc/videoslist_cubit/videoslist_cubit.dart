@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/data/models/video/youtube_video_model.dart';
 import 'package:flutter_clean_architecture/domain/use_cases/get_videolist.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/videoslist_cubit/videoslist_state.dart';
@@ -31,7 +32,7 @@ class VideoListCubit extends Cubit<VideoListState> {
       page++;
       final playlists = (state as VideoListLoading).oldVideoList;
       playlists.addAll(character);
-      print('PlayList length: ${playlists.length.toString()}');
+      debugPrint('PlayList length: ${playlists.length.toString()}');
       emit(VideoListLoaded(playlists));
     });
   }

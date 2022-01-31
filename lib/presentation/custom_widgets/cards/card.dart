@@ -13,7 +13,7 @@ class PersonCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => context.router.push(PersonDetailRoute(person: person)),
+      onTap: () => AutoRouter.of(context).push(PersonDetailScreen(person: person)),//context.router.push(PersonDetailScreen(person: person)),
       child: Padding(
         padding: const EdgeInsets.only(right: 8, left: 8),
         child: Container(

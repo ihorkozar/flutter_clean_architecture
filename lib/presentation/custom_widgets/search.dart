@@ -1,6 +1,5 @@
-import 'dart:io';
 import 'dart:math';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/data/models/person/person_model.dart';
@@ -8,6 +7,7 @@ import 'package:flutter_clean_architecture/presentation/bloc/search_bloc/search_
 import 'package:flutter_clean_architecture/presentation/bloc/search_bloc/search_event.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/search_bloc/search_state.dart';
 import 'package:flutter_clean_architecture/presentation/custom_widgets/search_result.dart';
+import 'package:flutter_clean_architecture/util/responcive.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
   CustomSearchDelegate() : super(searchFieldLabel: 'Search for characters...');
@@ -21,28 +21,32 @@ class CustomSearchDelegate extends SearchDelegate {
   List<Widget> buildActions(BuildContext context) {
     return [
       IconButton(
-          icon: const Icon(Icons.clear),
-          onPressed: () {
-            query = '';
-            showSuggestions(context);
-          },),
+        icon: const Icon(Icons.clear),
+        onPressed: () {
+          query = '';
+          showSuggestions(context);
+        },
+      ),
     ];
   }
 
   @override
   Widget buildLeading(BuildContext context) {
     return IconButton(
-        icon: const Icon(Icons.arrow_back_outlined),
-        tooltip: 'Back',
-        onPressed: () => close(context, null),);
+      icon: const Icon(Icons.arrow_back_outlined),
+      tooltip: 'Back',
+      onPressed: () => close(context, null),
+    );
   }
 
   @override
   Widget buildResults(BuildContext context) {
-    print('Inside custom search delegate and search query is $query');
+    debugPrint('Inside custom search delegate and search query is $query');
 
     BlocProvider.of<PersonSearchBloc>(context, listen: false)
         .add(SearchPersons(query));
+
+    var size = MediaQuery.of(context).size;
 
     return BlocBuilder<PersonSearchBloc, PersonSearchState>(
       builder: (context, state) {
@@ -56,11 +60,19 @@ class CustomSearchDelegate extends SearchDelegate {
             return _showError('No Characters with that name found');
           }
 
-          if (kIsWeb || Platform.isWindows || Platform.isLinux || Platform.isMacOS) {
+          if (Responsive.isMobile(context)) {
+            return ListView.builder(
+              itemCount: person.isNotEmpty ? person.length : 0,
+              itemBuilder: (context, int index) {
+                PersonModel result = person[index];
+                return SearchResult(personResult: result);
+              },
+            );
+          } else {
             int gridCount = 1;
-            if (MediaQuery.of(context).size.width > 1480) {
+            if (size.width > 1480) {
               gridCount = 3;
-            } else if (MediaQuery.of(context).size.width > 980) {
+            } else if (size.width > 980) {
               gridCount = 2;
             }
             return GridView.builder(
@@ -71,14 +83,6 @@ class CustomSearchDelegate extends SearchDelegate {
                 crossAxisSpacing: 20.0,
                 crossAxisCount: gridCount,
               ),
-              itemBuilder: (context, int index) {
-                PersonModel result = person[index];
-                return SearchResult(personResult: result);
-              },
-            );
-          } else {
-            return ListView.builder(
-              itemCount: person.isNotEmpty ? person.length : 0,
               itemBuilder: (context, int index) {
                 PersonModel result = person[index];
                 return SearchResult(personResult: result);
@@ -111,7 +115,9 @@ class CustomSearchDelegate extends SearchDelegate {
                 child: Image.asset(img),
               ),
             ),
-            const SizedBox(height: 32,),
+            const SizedBox(
+              height: 32,
+            ),
             Text(
               errorMessage,
               style: const TextStyle(
@@ -125,7 +131,7 @@ class CustomSearchDelegate extends SearchDelegate {
     );
   }
 
-  int getRand(){
+  int getRand() {
     return Random().nextInt(5);
   }
 

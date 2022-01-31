@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_clean_architecture/data/models/playlist/playlist_model.dart';
 import 'package:flutter_clean_architecture/domain/use_cases/get_playlist.dart';
 import 'package:flutter_clean_architecture/util/constants.dart';
 import 'package:flutter_clean_architecture/util/failure.dart';
-import 'package:meta/meta.dart';
 
 part 'playlist_state.dart';
 
@@ -33,7 +33,7 @@ class PlaylistCubit extends Cubit<PlaylistState> {
       page++;
       final playlists = (state as PlaylistLoading).oldPlayList;
       playlists.addAll(character);
-      print('PlayList length: ${playlists.length.toString()}');
+      debugPrint('PlayList length: ${playlists.length.toString()}');
       emit(PlaylistLoaded(playlists));
     });
   }

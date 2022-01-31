@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/data/models/person/person_model.dart';
 import 'package:flutter_clean_architecture/domain/use_cases/get_all.dart';
@@ -30,7 +31,7 @@ class PersonListCubit extends Cubit<PersonState> {
       page++;
       final persons = (state as PersonLoading).oldPersonsList;
       persons.addAll(character);
-      print('List length: ${persons.length.toString()}');
+      debugPrint('List length: ${persons.length.toString()}');
       emit(PersonLoaded(persons));
     });
   }

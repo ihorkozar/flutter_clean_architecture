@@ -13,7 +13,7 @@ class SearchResult extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        AutoRouter.of(context).push(PersonDetailRoute(person: personResult));
+        AutoRouter.of(context).push(PersonDetailScreen(person: personResult));
       },
       child: SearchResultCard(personResult: personResult),
     );
