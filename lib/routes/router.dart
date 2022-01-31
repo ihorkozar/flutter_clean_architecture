@@ -7,7 +7,6 @@ import 'package:flutter_clean_architecture/presentation/screens/playlists_screen
 import 'package:flutter_clean_architecture/presentation/screens/splash_screen.dart';
 import 'package:flutter_clean_architecture/presentation/screens/videos_screen.dart';
 import 'package:flutter_clean_architecture/routes/route_constants.dart';
-import 'package:flutter_clean_architecture/samples/youtube/youtube_video_sample.dart';
 
 @MaterialAutoRouter(
   replaceInRouteName: 'Page,Route',
