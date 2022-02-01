@@ -3,16 +3,56 @@ import 'package:flutter_clean_architecture/util/constants.dart';
 import 'package:flutter_clean_architecture/util/progress_hud.dart';
 import 'package:flutter_clean_architecture/util/responcive.dart';
 
-class AuthScreen extends StatefulWidget {
+class AuthScreen extends StatelessWidget {
   const AuthScreen({Key? key}) : super(key: key);
 
   @override
-  State<AuthScreen> createState() => _AuthScreenState();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Container(
+          child: Responsive.isMobile(context)
+              ? Column(
+                  children: const [
+                    Center(
+                      child: FlutterLogo(
+                        size: 300,
+                      ),
+                    ),
+                    Expanded(
+                      child: AuthFormWidget(),
+                    ),
+                  ],
+                )
+              : Row(
+                  children: const [
+                    Center(
+                      child: FlutterLogo(
+                        size: 300,
+                      ),
+                    ),
+                    Expanded(child: AuthFormWidget()),
+                  ],
+                ),
+        ),
+      ),
+    );
+  }
 }
 
-class _AuthScreenState extends State<AuthScreen>
+class AuthFormWidget extends StatefulWidget {
+  const AuthFormWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<AuthFormWidget> createState() => _AuthFormWidgetState();
+}
+
+class _AuthFormWidgetState extends State<AuthFormWidget>
     with SingleTickerProviderStateMixin {
   late TabController _tabController;
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -22,38 +62,40 @@ class _AuthScreenState extends State<AuthScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Container(
-          child: Responsive.isMobile(context)
-              ? Column(
-                  children: [
-                    const Center(
-                      child: FlutterLogo(
-                        size: 300,
-                      ),
-                    ),
-                    Expanded(child: NewWidget(tabController: _tabController)),
-                  ],
-                )
-              : Row(
-                  children: [
-                    const Center(
-                      child: FlutterLogo(
-                        size: 300,
-                      ),
-                    ),
-                    Expanded(child: NewWidget(tabController: _tabController)),
-                  ],
-                ),
-        ),
+    return NestedScrollView(
+      controller: _scrollController,
+      headerSliverBuilder: (context, value) {
+        return [
+          SliverToBoxAdapter(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                AuthTabBar(tabController: _tabController),
+              ],
+            ),
+          ),
+        ];
+      },
+      body: TabBarView(
+        children: const [
+          TeacherAuth(),
+          StudentAuth(),
+        ],
+        controller: _tabController,
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    _scrollController.dispose();
+    super.dispose();
+  }
 }
 
-class NewWidget extends StatelessWidget {
-  const NewWidget({
+class AuthTabBar extends StatelessWidget {
+  const AuthTabBar({
     Key? key,
     required TabController tabController,
   })  : _tabController = tabController,
@@ -63,86 +105,65 @@ class NewWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(
-              width: 332,
-              child: TabBar(
-                indicatorWeight: 0,
-                labelPadding: const EdgeInsets.only(right: 0),
-                padding: const EdgeInsets.only(top: 8, bottom: 8, right: 16),
-                labelColor: Colors.black,
-                unselectedLabelColor: Colors.white,
-                indicator: BoxDecoration(
-                  borderRadius: BorderRadius.circular(5),
-                  color: Colors.white,
-                ),
-                tabs: [
-                  Tab(
-                    height: 150,
-                    child: Container(
-                      width: 150,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: const [
-                          FlutterLogo(
-                            size: 100,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 8.0),
-                            child: Text('Teacher'),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Tab(
-                    height: 150,
-                    child: Container(
-                      width: 150,
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.white),
-                        borderRadius: BorderRadius.circular(5),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: const [
-                          FlutterLogo(
-                            size: 100,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(top: 8.0),
-                            child: Text('Student'),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-                controller: _tabController,
-                indicatorSize: TabBarIndicatorSize.label,
-              ),
+    return TabBar(
+      isScrollable: true,
+      indicatorWeight: 0,
+      labelPadding: const EdgeInsets.only(right: 8, left: 8),
+      padding: const EdgeInsets.only(top: 8, bottom: 8),
+      labelColor: Colors.black,
+      unselectedLabelColor: Colors.white,
+      indicator: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        color: Colors.white,
+      ),
+      tabs: [
+        Tab(
+          height: 150,
+          child: Container(
+            width: 150,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.white),
+              borderRadius: BorderRadius.circular(5),
             ),
-          ],
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const [
+                FlutterLogo(
+                  size: 100,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 8.0),
+                  child: Text('Teacher'),
+                ),
+              ],
+            ),
+          ),
         ),
-        Expanded(
-          child: TabBarView(
-            children: [
-              TeacherAuth(),
-              StudentAuth(),
-            ],
-            controller: _tabController,
+        Tab(
+          height: 150,
+          child: Container(
+            width: 150,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.white),
+              borderRadius: BorderRadius.circular(5),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const [
+                FlutterLogo(
+                  size: 100,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 8.0),
+                  child: Text('Student'),
+                ),
+              ],
+            ),
           ),
         ),
       ],
+      controller: _tabController,
+      indicatorSize: TabBarIndicatorSize.label,
     );
   }
 }
@@ -167,74 +188,93 @@ class _StudentAuthState extends State<StudentAuth> {
   Widget build(BuildContext context) {
     return ProgressHud(
       inAsyncCall: showProgress,
-      child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(5),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                children: [
-                  const Text(
-                    'REGISTER AS',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  const SizedBox(height: 8,),
-                  const Text(
-                    'bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  const SizedBox(height: 8,),
-                  TextField(
-                    keyboardType: TextInputType.name,
-                    textAlign: TextAlign.center,
-                    onChanged: (value) {
-                      name = value;
-                    },
-                    decoration: kTextRegDecoration.copyWith(hintText: 'First name'),
-                  ),
-                  const SizedBox(height: 8,),
-                  TextField(
-                    keyboardType: TextInputType.name,
-                    textAlign: TextAlign.center,
-                    onChanged: (value) {
-                      surname = value;
-                    },
-                    decoration: kTextRegDecoration.copyWith(hintText: 'Last name'),
-                  ),
-                  const SizedBox(height: 8,),
-                  TextField(
-                    keyboardType: TextInputType.name,
-                    textAlign: TextAlign.center,
-                    onChanged: (value) {
-                      surname = value;
-                    },
-                    decoration: kTextRegDecoration.copyWith(hintText: 'Email address'),
-                  ),
-                  const SizedBox(height: 8,),
-                  TextField(
-                    keyboardType: TextInputType.name,
-                    textAlign: TextAlign.center,
-                    onChanged: (value) {
-                      surname = value;
-                    },
-                    decoration: kTextRegDecoration.copyWith(hintText: 'Password'),
-                  ),
-                  const SizedBox(height: 8,),
-                  TextField(
-                    keyboardType: TextInputType.name,
-                    textAlign: TextAlign.center,
-                    onChanged: (value) {
-                      surname = value;
-                    },
-                    decoration: kTextRegDecoration.copyWith(hintText: 'Confirm password'),
-                  ),
-                ],
-              ),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(5),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView(
+              children: [
+                const Text(
+                  'REGISTER AS',
+                  style: TextStyle(color: Colors.black),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                const Text(
+                  'bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla bla',
+                  style: TextStyle(color: Colors.black),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  keyboardType: TextInputType.name,
+                  textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    name = value;
+                  },
+                  decoration:
+                      kTextRegDecoration.copyWith(hintText: 'First name'),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  keyboardType: TextInputType.name,
+                  textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    surname = value;
+                  },
+                  decoration:
+                      kTextRegDecoration.copyWith(hintText: 'Last name'),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  keyboardType: TextInputType.name,
+                  textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    surname = value;
+                  },
+                  decoration:
+                      kTextRegDecoration.copyWith(hintText: 'Email address'),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  keyboardType: TextInputType.name,
+                  textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    surname = value;
+                  },
+                  decoration: kTextRegDecoration.copyWith(hintText: 'Password'),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                TextField(
+                  keyboardType: TextInputType.name,
+                  textAlign: TextAlign.center,
+                  onChanged: (value) {
+                    surname = value;
+                  },
+                  decoration:
+                      kTextRegDecoration.copyWith(hintText: 'Confirm password'),
+                ),
+                // FlutterLogo(size: 300,),
+                // FlutterLogo(size: 300,),
+                // FlutterLogo(size: 300,),
+                // FlutterLogo(size: 300,),
+                // FlutterLogo(size: 300,),
+              ],
             ),
           ),
         ),
