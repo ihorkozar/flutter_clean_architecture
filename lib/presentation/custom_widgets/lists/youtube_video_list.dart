@@ -1,10 +1,9 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/data/models/video/youtube_video_model.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/videoslist_cubit/videoslist_cubit.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/videoslist_cubit/videoslist_state.dart';
-import 'package:flutter_clean_architecture/presentation/custom_widgets/cards/video_card.dart';
+import 'package:flutter_clean_architecture/presentation/custom_widgets/video_view.dart';
 
 class YouTubeVideoList extends StatelessWidget {
   final scrollController = ScrollController();
@@ -27,54 +26,32 @@ class YouTubeVideoList extends StatelessWidget {
   Widget build(BuildContext context) {
     setupScrollController(context);
 
-    return BlocBuilder<VideoListCubit, VideoListState>(builder: (context, state) {
-      List<YouTubeVideoModel> videos = [];
-      bool isLoading = false;
+    return BlocBuilder<VideoListCubit, VideoListState>(
+        builder: (context, state) {
+          List<YouTubeVideoModel> videos = [];
+          List<String> videoIdList = [];
 
-      if (state is VideoListLoading && state.isFirstFetch) {
-        return _loadingIndicator();
-      } else if (state is VideoListLoading) {
-        videos = state.oldVideoList;
-        isLoading = true;
-      } else if (state is VideoListLoaded) {
-        videos = state.videoList;
-      } else if (state is VideoListError) {
-        return Center(
-          child: Text(
-            state.message,
-            style: const TextStyle(color: Colors.white, fontSize: 25),
-          ),
-        );
-      }
-      return ListView.separated(
-        controller: scrollController,
-        itemBuilder: (context, index) {
-          if (index < videos.length) {
-            return Padding(
-              padding: const EdgeInsets.all(8),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: VideoCard(videos: videos, index: index),
-              ),//Text(videos[index].snippet.title),
-            );
-          } else {
-            Timer(const Duration(milliseconds: 30), () {
-              scrollController
-                  .jumpTo(scrollController.position.maxScrollExtent);
-            });
+          if (state is VideoListLoading && state.isFirstFetch) {
             return _loadingIndicator();
+          } else if (state is VideoListLoading) {
+            videos = state.oldVideoList;
+          } else if (state is VideoListLoaded) {
+            videos = state.videoList;
+          } else if (state is VideoListError) {
+            return Center(
+              child: Text(
+                state.message,
+                style: const TextStyle(color: Colors.white, fontSize: 25),
+              ),
+            );
           }
-        },
-        separatorBuilder: (context, index) {
-          return Divider(
-            endIndent: 8,
-            indent: 8,
-            color: Colors.grey[400],
-          );
-        },
-        itemCount: videos.length + (isLoading ? 1 : 0),
-      );
-    });
+
+          videos.forEach((element) {
+            videoIdList.add(element.snippet.resourceId.videoId);
+          });
+
+          return VideoView(videoIdList: videoIdList);
+        },);
   }
 
   Widget _loadingIndicator() {

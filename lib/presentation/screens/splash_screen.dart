@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
         _updateSizes();
       });
       Timer(const Duration(seconds: 2), () {
-        AutoRouter.of(context).replaceNamed(RouteConstants.home);
+        AutoRouter.of(context).replaceNamed(RouteConstants.overview);
       });
     });
   }
@@ -40,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
               height: _height,
               width: _width,
               duration: const Duration(milliseconds: 1000),
-              child: Image.asset('assets/images/rm_splash.png')),
+              child: Image.asset('assets/images/rm_splash.png'),),
         ),
       ),
     );

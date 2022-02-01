@@ -89,7 +89,7 @@ class BarChartSample2State extends State<BarChartSample2> {
                         getTextStyles: (context, value) => const TextStyle(
                             color: Color(0xff7589a2),
                             fontWeight: FontWeight.bold,
-                            fontSize: 14),
+                            fontSize: 14,),
                         margin: 20,
                         getTitles: (double value) {
                           switch (value.toInt()) {
@@ -117,7 +117,7 @@ class BarChartSample2State extends State<BarChartSample2> {
                         getTextStyles: (context, value) => const TextStyle(
                             color: Color(0xff7589a2),
                             fontWeight: FontWeight.bold,
-                            fontSize: 14),
+                            fontSize: 14,),
                         margin: 8,
                         reservedSize: 28,
                         interval: 1,
