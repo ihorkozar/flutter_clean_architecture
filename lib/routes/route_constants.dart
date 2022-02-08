@@ -8,4 +8,6 @@ class RouteConstants{
 
   static const playlists = 'playlists';
   static const videos = 'videos';
+
+  static const stepper = 'stepper';
 }

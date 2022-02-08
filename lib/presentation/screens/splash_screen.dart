@@ -36,11 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           Timer(const Duration(seconds: 3), () {
-            if(snapshot.hasData){
-              AutoRouter.of(context).replaceNamed(RouteConstants.overview);
-            } else {
-              AutoRouter.of(context).replaceNamed(RouteConstants.auth);
-            }
+            AutoRouter.of(context).replaceNamed(RouteConstants.auth);
           });
           return Padding(
             padding: const EdgeInsets.all(16),

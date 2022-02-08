@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/data/models/person/person_model.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/list_cubit/list_cubit.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/list_cubit/list_state.dart';
-import 'package:flutter_clean_architecture/util/responcive.dart';
+import 'package:flutter_clean_architecture/util/responsive.dart';
 
 import '../cards/card.dart';
 

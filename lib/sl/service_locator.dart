@@ -1,13 +1,16 @@
+import 'package:flutter_clean_architecture/data/repository/auth_repository_impl.dart';
 import 'package:flutter_clean_architecture/data/repository/person_repository_impl.dart';
 import 'package:flutter_clean_architecture/data/repository/playlist_repository_impl.dart';
 import 'package:flutter_clean_architecture/data/sources/local_source.dart';
 import 'package:flutter_clean_architecture/data/sources/remote_source.dart';
+import 'package:flutter_clean_architecture/domain/repository/auth_repository.dart';
 import 'package:flutter_clean_architecture/domain/repository/person_repository.dart';
 import 'package:flutter_clean_architecture/domain/repository/playlist_repository.dart';
 import 'package:flutter_clean_architecture/domain/use_cases/get_all.dart';
 import 'package:flutter_clean_architecture/domain/use_cases/get_playlist.dart';
 import 'package:flutter_clean_architecture/domain/use_cases/get_videolist.dart';
 import 'package:flutter_clean_architecture/domain/use_cases/search.dart';
+import 'package:flutter_clean_architecture/presentation/bloc/auth_bloc/auth_bloc.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/list_cubit/list_cubit.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/playlist_cubit/playlist_cubit.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/search_bloc/search_bloc.dart';
@@ -32,7 +35,10 @@ Future<void> init() async {
     () => PlaylistCubit(getPlaylist: serviceLocator()),
   );
   serviceLocator.registerFactory(
-        () => VideoListCubit(getVideos: serviceLocator()),
+    () => VideoListCubit(getVideos: serviceLocator()),
+  );
+  serviceLocator.registerFactory(
+    () => AuthBloc(authRepository: serviceLocator()),
   );
 
   // UseCases
@@ -57,6 +63,11 @@ Future<void> init() async {
     ),
   );
 
+  serviceLocator.registerLazySingleton<AuthRepository>(
+    () => AuthRepositoryImpl(),
+  );
+
+  //Data Sources
   serviceLocator.registerLazySingleton<RemoteDataSource>(
     () => RemoteDataSourceImpl(
       client: serviceLocator(),

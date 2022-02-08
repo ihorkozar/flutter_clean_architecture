@@ -7,7 +7,7 @@ import 'package:flutter_clean_architecture/presentation/bloc/search_bloc/search_
 import 'package:flutter_clean_architecture/presentation/bloc/search_bloc/search_event.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/search_bloc/search_state.dart';
 import 'package:flutter_clean_architecture/presentation/custom_widgets/search_result.dart';
-import 'package:flutter_clean_architecture/util/responcive.dart';
+import 'package:flutter_clean_architecture/util/responsive.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
   CustomSearchDelegate() : super(searchFieldLabel: 'Search for characters...');
@@ -93,7 +93,7 @@ class CustomSearchDelegate extends SearchDelegate {
           return _showError(state.message);
         } else {
           return const Center(
-            child: Icon(Icons.now_wallpaper),
+            child: Icon(Icons.error),
           );
         }
       },
