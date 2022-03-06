@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_clean_architecture/presentation/bloc/list_cubit/list_cubit.dart';
@@ -8,9 +10,14 @@ import 'package:flutter_clean_architecture/routes/router.gr.dart';
 import 'package:flutter_clean_architecture/util/app_style.dart';
 import 'package:flutter_clean_architecture/util/service_locator.dart' as sl;
 import 'package:flutter_clean_architecture/util/service_locator.dart';
+import 'package:window_size/window_size.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  if (Platform.isWindows) {
+    setWindowMaxSize(const Size(1920, 1080));
+    setWindowMinSize(const Size(800, 600));
+  }
   await sl.init();
   runApp(const MyApp());
 }
