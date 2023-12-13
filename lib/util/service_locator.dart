@@ -14,6 +14,7 @@ import 'package:flutter_clean_architecture/presentation/bloc/search_bloc/search_
 import 'package:flutter_clean_architecture/presentation/bloc/videoslist_cubit/videoslist_cubit.dart';
 import 'package:flutter_clean_architecture/util/connection_info.dart';
 import 'package:get_it/get_it.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:universal_internet_checker/universal_internet_checker.dart';
@@ -32,7 +33,7 @@ Future<void> init() async {
     () => PlaylistCubit(getPlaylist: serviceLocator()),
   );
   serviceLocator.registerFactory(
-        () => VideoListCubit(getVideos: serviceLocator()),
+    () => VideoListCubit(getVideos: serviceLocator()),
   );
 
   // UseCases
@@ -60,6 +61,7 @@ Future<void> init() async {
   serviceLocator.registerLazySingleton<RemoteDataSource>(
     () => RemoteDataSourceImpl(
       client: serviceLocator(),
+      gClient: serviceLocator(),
     ),
   );
 
@@ -77,4 +79,9 @@ Future<void> init() async {
   serviceLocator.registerLazySingleton(() => sharedPreferences);
   serviceLocator.registerLazySingleton(() => http.Client());
   serviceLocator.registerLazySingleton(() => UniversalInternetChecker());
+
+  serviceLocator.registerLazySingleton(() => GraphQLClient(
+        cache: GraphQLCache(),
+        link: HttpLink('https://rickandmortyapi.com/graphql'),
+      ));
 }

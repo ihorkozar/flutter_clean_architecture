@@ -18,6 +18,8 @@ dependencies:
   flutter_bloc: ^8.0.1
   #Network
   http: ^0.13.4
+  graphql_flutter: ^5.1.0
+  web_socket_channel: 2.2.0
   universal_internet_checker: ^0.1.2
   #Cache
   shared_preferences: ^2.0.12

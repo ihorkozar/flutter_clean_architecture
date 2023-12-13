@@ -42,7 +42,7 @@ class SearchResultCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                personResult.location.name,
+                'personResult.location?.name ?? ' '',
                 style: const TextStyle(
                   fontWeight: FontWeight.w400,
                   fontSize: 16.0,

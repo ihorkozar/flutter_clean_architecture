@@ -8,14 +8,14 @@ part 'person_model.g.dart';
 @freezed
 class PersonModel with _$PersonModel {
   const factory PersonModel({
-    required int id,
+    required String id,
     required String name,
     required String status,
     required String species,
     required String type,
     required String gender,
-    required LocationModel origin,
-    required LocationModel location,
+    //required LocationModel origin,
+    // required LocationModel location,
     required String image,
     required List<String> episode,
     required DateTime created,

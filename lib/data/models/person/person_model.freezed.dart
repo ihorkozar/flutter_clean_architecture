@@ -23,14 +23,12 @@ class _$PersonModelTearOff {
   const _$PersonModelTearOff();
 
   _PersonModel call(
-      {required int id,
+      {required String id,
       required String name,
       required String status,
       required String species,
       required String type,
       required String gender,
-      required LocationModel origin,
-      required LocationModel location,
       required String image,
       required List<String> episode,
       required DateTime created}) {
@@ -41,8 +39,6 @@ class _$PersonModelTearOff {
       species: species,
       type: type,
       gender: gender,
-      origin: origin,
-      location: location,
       image: image,
       episode: episode,
       created: created,
@@ -59,14 +55,14 @@ const $PersonModel = _$PersonModelTearOff();
 
 /// @nodoc
 mixin _$PersonModel {
-  int get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
   String get species => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
-  String get gender => throw _privateConstructorUsedError;
-  LocationModel get origin => throw _privateConstructorUsedError;
-  LocationModel get location => throw _privateConstructorUsedError;
+  String get gender =>
+      throw _privateConstructorUsedError; //required LocationModel origin,
+// required LocationModel location,
   String get image => throw _privateConstructorUsedError;
   List<String> get episode => throw _privateConstructorUsedError;
   DateTime get created => throw _privateConstructorUsedError;
@@ -83,20 +79,15 @@ abstract class $PersonModelCopyWith<$Res> {
           PersonModel value, $Res Function(PersonModel) then) =
       _$PersonModelCopyWithImpl<$Res>;
   $Res call(
-      {int id,
+      {String id,
       String name,
       String status,
       String species,
       String type,
       String gender,
-      LocationModel origin,
-      LocationModel location,
       String image,
       List<String> episode,
       DateTime created});
-
-  $LocationModelCopyWith<$Res> get origin;
-  $LocationModelCopyWith<$Res> get location;
 }
 
 /// @nodoc
@@ -115,8 +106,6 @@ class _$PersonModelCopyWithImpl<$Res> implements $PersonModelCopyWith<$Res> {
     Object? species = freezed,
     Object? type = freezed,
     Object? gender = freezed,
-    Object? origin = freezed,
-    Object? location = freezed,
     Object? image = freezed,
     Object? episode = freezed,
     Object? created = freezed,
@@ -125,7 +114,7 @@ class _$PersonModelCopyWithImpl<$Res> implements $PersonModelCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -146,14 +135,6 @@ class _$PersonModelCopyWithImpl<$Res> implements $PersonModelCopyWith<$Res> {
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as String,
-      origin: origin == freezed
-          ? _value.origin
-          : origin // ignore: cast_nullable_to_non_nullable
-              as LocationModel,
-      location: location == freezed
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as LocationModel,
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -168,20 +149,6 @@ class _$PersonModelCopyWithImpl<$Res> implements $PersonModelCopyWith<$Res> {
               as DateTime,
     ));
   }
-
-  @override
-  $LocationModelCopyWith<$Res> get origin {
-    return $LocationModelCopyWith<$Res>(_value.origin, (value) {
-      return _then(_value.copyWith(origin: value));
-    });
-  }
-
-  @override
-  $LocationModelCopyWith<$Res> get location {
-    return $LocationModelCopyWith<$Res>(_value.location, (value) {
-      return _then(_value.copyWith(location: value));
-    });
-  }
 }
 
 /// @nodoc
@@ -192,22 +159,15 @@ abstract class _$PersonModelCopyWith<$Res>
       __$PersonModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int id,
+      {String id,
       String name,
       String status,
       String species,
       String type,
       String gender,
-      LocationModel origin,
-      LocationModel location,
       String image,
       List<String> episode,
       DateTime created});
-
-  @override
-  $LocationModelCopyWith<$Res> get origin;
-  @override
-  $LocationModelCopyWith<$Res> get location;
 }
 
 /// @nodoc
@@ -228,8 +188,6 @@ class __$PersonModelCopyWithImpl<$Res> extends _$PersonModelCopyWithImpl<$Res>
     Object? species = freezed,
     Object? type = freezed,
     Object? gender = freezed,
-    Object? origin = freezed,
-    Object? location = freezed,
     Object? image = freezed,
     Object? episode = freezed,
     Object? created = freezed,
@@ -238,7 +196,7 @@ class __$PersonModelCopyWithImpl<$Res> extends _$PersonModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -259,14 +217,6 @@ class __$PersonModelCopyWithImpl<$Res> extends _$PersonModelCopyWithImpl<$Res>
           ? _value.gender
           : gender // ignore: cast_nullable_to_non_nullable
               as String,
-      origin: origin == freezed
-          ? _value.origin
-          : origin // ignore: cast_nullable_to_non_nullable
-              as LocationModel,
-      location: location == freezed
-          ? _value.location
-          : location // ignore: cast_nullable_to_non_nullable
-              as LocationModel,
       image: image == freezed
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
@@ -293,8 +243,6 @@ class _$_PersonModel implements _PersonModel {
       required this.species,
       required this.type,
       required this.gender,
-      required this.origin,
-      required this.location,
       required this.image,
       required this.episode,
       required this.created});
@@ -303,7 +251,7 @@ class _$_PersonModel implements _PersonModel {
       _$$_PersonModelFromJson(json);
 
   @override
-  final int id;
+  final String id;
   @override
   final String name;
   @override
@@ -314,11 +262,8 @@ class _$_PersonModel implements _PersonModel {
   final String type;
   @override
   final String gender;
-  @override
-  final LocationModel origin;
-  @override
-  final LocationModel location;
-  @override
+  @override //required LocationModel origin,
+// required LocationModel location,
   final String image;
   @override
   final List<String> episode;
@@ -327,7 +272,7 @@ class _$_PersonModel implements _PersonModel {
 
   @override
   String toString() {
-    return 'PersonModel(id: $id, name: $name, status: $status, species: $species, type: $type, gender: $gender, origin: $origin, location: $location, image: $image, episode: $episode, created: $created)';
+    return 'PersonModel(id: $id, name: $name, status: $status, species: $species, type: $type, gender: $gender, image: $image, episode: $episode, created: $created)';
   }
 
   @override
@@ -341,8 +286,6 @@ class _$_PersonModel implements _PersonModel {
             const DeepCollectionEquality().equals(other.species, species) &&
             const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality().equals(other.gender, gender) &&
-            const DeepCollectionEquality().equals(other.origin, origin) &&
-            const DeepCollectionEquality().equals(other.location, location) &&
             const DeepCollectionEquality().equals(other.image, image) &&
             const DeepCollectionEquality().equals(other.episode, episode) &&
             const DeepCollectionEquality().equals(other.created, created));
@@ -357,8 +300,6 @@ class _$_PersonModel implements _PersonModel {
       const DeepCollectionEquality().hash(species),
       const DeepCollectionEquality().hash(type),
       const DeepCollectionEquality().hash(gender),
-      const DeepCollectionEquality().hash(origin),
-      const DeepCollectionEquality().hash(location),
       const DeepCollectionEquality().hash(image),
       const DeepCollectionEquality().hash(episode),
       const DeepCollectionEquality().hash(created));
@@ -376,14 +317,12 @@ class _$_PersonModel implements _PersonModel {
 
 abstract class _PersonModel implements PersonModel {
   const factory _PersonModel(
-      {required int id,
+      {required String id,
       required String name,
       required String status,
       required String species,
       required String type,
       required String gender,
-      required LocationModel origin,
-      required LocationModel location,
       required String image,
       required List<String> episode,
       required DateTime created}) = _$_PersonModel;
@@ -392,7 +331,7 @@ abstract class _PersonModel implements PersonModel {
       _$_PersonModel.fromJson;
 
   @override
-  int get id;
+  String get id;
   @override
   String get name;
   @override
@@ -403,11 +342,8 @@ abstract class _PersonModel implements PersonModel {
   String get type;
   @override
   String get gender;
-  @override
-  LocationModel get origin;
-  @override
-  LocationModel get location;
-  @override
+  @override //required LocationModel origin,
+// required LocationModel location,
   String get image;
   @override
   List<String> get episode;
