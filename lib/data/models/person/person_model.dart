@@ -14,10 +14,10 @@ class PersonModel with _$PersonModel {
     required String species,
     required String type,
     required String gender,
-    //required LocationModel origin,
+    // required LocationModel origin,
     // required LocationModel location,
     required String image,
-    required List<String> episode,
+    //required List<String> episode,
     required DateTime created,
   }) = _PersonModel;
 

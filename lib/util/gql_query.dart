@@ -11,10 +11,6 @@ mixin GqlQuery {
         gender
         image
         created
-        origin {
-          name
-          url
-        }
       }
     }
   }

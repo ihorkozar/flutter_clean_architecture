@@ -15,8 +15,6 @@ _$_PersonModel _$$_PersonModelFromJson(Map<String, dynamic> json) =>
       type: json['type'] as String,
       gender: json['gender'] as String,
       image: json['image'] as String,
-      episode:
-          (json['episode'] as List<dynamic>).map((e) => e as String).toList(),
       created: DateTime.parse(json['created'] as String),
     );
 
@@ -29,6 +27,5 @@ Map<String, dynamic> _$$_PersonModelToJson(_$_PersonModel instance) =>
       'type': instance.type,
       'gender': instance.gender,
       'image': instance.image,
-      'episode': instance.episode,
       'created': instance.created.toIso8601String(),
     };

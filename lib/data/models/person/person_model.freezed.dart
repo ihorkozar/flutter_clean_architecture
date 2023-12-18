@@ -30,7 +30,6 @@ class _$PersonModelTearOff {
       required String type,
       required String gender,
       required String image,
-      required List<String> episode,
       required DateTime created}) {
     return _PersonModel(
       id: id,
@@ -40,7 +39,6 @@ class _$PersonModelTearOff {
       type: type,
       gender: gender,
       image: image,
-      episode: episode,
       created: created,
     );
   }
@@ -61,10 +59,10 @@ mixin _$PersonModel {
   String get species => throw _privateConstructorUsedError;
   String get type => throw _privateConstructorUsedError;
   String get gender =>
-      throw _privateConstructorUsedError; //required LocationModel origin,
+      throw _privateConstructorUsedError; // required LocationModel origin,
 // required LocationModel location,
-  String get image => throw _privateConstructorUsedError;
-  List<String> get episode => throw _privateConstructorUsedError;
+  String get image =>
+      throw _privateConstructorUsedError; //required List<String> episode,
   DateTime get created => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -86,7 +84,6 @@ abstract class $PersonModelCopyWith<$Res> {
       String type,
       String gender,
       String image,
-      List<String> episode,
       DateTime created});
 }
 
@@ -107,7 +104,6 @@ class _$PersonModelCopyWithImpl<$Res> implements $PersonModelCopyWith<$Res> {
     Object? type = freezed,
     Object? gender = freezed,
     Object? image = freezed,
-    Object? episode = freezed,
     Object? created = freezed,
   }) {
     return _then(_value.copyWith(
@@ -139,10 +135,6 @@ class _$PersonModelCopyWithImpl<$Res> implements $PersonModelCopyWith<$Res> {
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
-      episode: episode == freezed
-          ? _value.episode
-          : episode // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       created: created == freezed
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
@@ -166,7 +158,6 @@ abstract class _$PersonModelCopyWith<$Res>
       String type,
       String gender,
       String image,
-      List<String> episode,
       DateTime created});
 }
 
@@ -189,7 +180,6 @@ class __$PersonModelCopyWithImpl<$Res> extends _$PersonModelCopyWithImpl<$Res>
     Object? type = freezed,
     Object? gender = freezed,
     Object? image = freezed,
-    Object? episode = freezed,
     Object? created = freezed,
   }) {
     return _then(_PersonModel(
@@ -221,10 +211,6 @@ class __$PersonModelCopyWithImpl<$Res> extends _$PersonModelCopyWithImpl<$Res>
           ? _value.image
           : image // ignore: cast_nullable_to_non_nullable
               as String,
-      episode: episode == freezed
-          ? _value.episode
-          : episode // ignore: cast_nullable_to_non_nullable
-              as List<String>,
       created: created == freezed
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
@@ -244,7 +230,6 @@ class _$_PersonModel implements _PersonModel {
       required this.type,
       required this.gender,
       required this.image,
-      required this.episode,
       required this.created});
 
   factory _$_PersonModel.fromJson(Map<String, dynamic> json) =>
@@ -262,17 +247,15 @@ class _$_PersonModel implements _PersonModel {
   final String type;
   @override
   final String gender;
-  @override //required LocationModel origin,
+  @override // required LocationModel origin,
 // required LocationModel location,
   final String image;
-  @override
-  final List<String> episode;
-  @override
+  @override //required List<String> episode,
   final DateTime created;
 
   @override
   String toString() {
-    return 'PersonModel(id: $id, name: $name, status: $status, species: $species, type: $type, gender: $gender, image: $image, episode: $episode, created: $created)';
+    return 'PersonModel(id: $id, name: $name, status: $status, species: $species, type: $type, gender: $gender, image: $image, created: $created)';
   }
 
   @override
@@ -287,7 +270,6 @@ class _$_PersonModel implements _PersonModel {
             const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality().equals(other.gender, gender) &&
             const DeepCollectionEquality().equals(other.image, image) &&
-            const DeepCollectionEquality().equals(other.episode, episode) &&
             const DeepCollectionEquality().equals(other.created, created));
   }
 
@@ -301,7 +283,6 @@ class _$_PersonModel implements _PersonModel {
       const DeepCollectionEquality().hash(type),
       const DeepCollectionEquality().hash(gender),
       const DeepCollectionEquality().hash(image),
-      const DeepCollectionEquality().hash(episode),
       const DeepCollectionEquality().hash(created));
 
   @JsonKey(ignore: true)
@@ -324,7 +305,6 @@ abstract class _PersonModel implements PersonModel {
       required String type,
       required String gender,
       required String image,
-      required List<String> episode,
       required DateTime created}) = _$_PersonModel;
 
   factory _PersonModel.fromJson(Map<String, dynamic> json) =
@@ -342,12 +322,10 @@ abstract class _PersonModel implements PersonModel {
   String get type;
   @override
   String get gender;
-  @override //required LocationModel origin,
+  @override // required LocationModel origin,
 // required LocationModel location,
   String get image;
-  @override
-  List<String> get episode;
-  @override
+  @override //required List<String> episode,
   DateTime get created;
   @override
   @JsonKey(ignore: true)
